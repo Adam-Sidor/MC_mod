@@ -14,7 +14,7 @@ license="MIT" #mandatory
 # Identyfikator moda (musi być unikalny i małymi literami)
 modId="adventuremod" #mandatory
 # Wersja Twojego moda
-version="1.0" #mandatory
+version="1.0" #mandatorya
 # Wyświetlana nazwa Twojego moda
 displayName="AdventureMod" #mandatory
 # Strona Twojego moda
