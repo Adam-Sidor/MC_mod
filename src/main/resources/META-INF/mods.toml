@@ -1,0 +1,46 @@
+# Typ loadera, używamy "javafml" dla Forge
+modLoader="javafml" #mandatory
+
+# Wersja loadera Forge. Powinna być zgodna z wersją Forge, której używasz.
+loaderVersion="[40,)" #mandatory
+
+# Licencja Twojego moda. "MIT" to przykład licencji open-source. Zmień ją według potrzeb.
+license="MIT" #mandatory
+
+# Możesz dodać URL do zgłaszania problemów, jeśli taki posiadasz.
+#issueTrackerURL="https://github.com/TwojMod/issues"
+
+[[mods]] #mandatory
+# Identyfikator moda (musi być unikalny i małymi literami)
+modId="adventuremod" #mandatory
+# Wersja Twojego moda
+version="1.0" #mandatory
+# Wyświetlana nazwa Twojego moda
+displayName="Aestowy mod Adama" #mandatory
+# Strona Twojego moda
+#displayURL="https://github.com/TwojMod"
+# Logo Twojego moda, jeśli dodasz plik graficzny
+#logoFile="pierwszymod_logo.png"
+# Kredyty, np. osoby, które pomogły w stworzeniu moda
+#credits="Stworzone przez [Twoje Imię]"
+# Autorzy Twojego moda
+authors="Adam Sidor" #optional
+# Opis Twojego moda (może być wielolinijkowy)
+description='''
+To jest mój pierwszy mod do Minecrafta!
+Dodaje nowe bloki i przedmioty do gry.
+'''
+
+[[dependencies.adventuremod]]
+modId="forge" #dependency
+mandatory=true
+versionRange="[40,)" # wymagamy Forge w wersji 43 lub wyższej
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.adventuremod]]
+modId="minecraft" #dependency
+mandatory=true
+versionRange="[1.18.2,1.20)" # wspieramy Minecraft od 1.19.2 do przed 1.20
+ordering="NONE"
+side="BOTH"
