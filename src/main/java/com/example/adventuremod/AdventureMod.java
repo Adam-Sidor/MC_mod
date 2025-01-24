@@ -1,5 +1,6 @@
 package com.example.adventuremod;
 
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -7,11 +8,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import static net.minecraft.world.effect.MobEffects.CONFUSION;
 
 @Mod(AdventureMod.MODID)
 public class AdventureMod {
@@ -33,8 +35,10 @@ public class AdventureMod {
                             .saturationMod(0.3f) // Nasycenie
                             .alwaysEat() // Można jeść zawsze
                             .build()
+
                     )
                     .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
             )
     );
     public AdventureMod() {

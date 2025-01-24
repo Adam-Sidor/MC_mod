@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " W ",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:water_bucket"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "item": "adventuremod:jager",
+    "count": 1
+  }
+}
+
+reszta ma tak
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:apple"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+
+  //lub
+   "ingredient": {
+       "item": "minecraft:stone"
+   },
+
+  "result": {
+    "item": "pierwszymod:golden_apple",
+    "count": 1
+  }
+}
+minecraft:crafting_shapeless - bez znaczenia jak ułożysz
+minecraft:smelting
+minecraft:blasting - piec hutniczy
+minecraft:stonecutting

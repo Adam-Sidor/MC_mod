@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " W ",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:water_bucket"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "item": "adventuremod:jager",
+    "count": 1
+  }
+}
