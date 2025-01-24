@@ -16,7 +16,7 @@ modId="adventuremod" #mandatory
 # Wersja Twojego moda
 version="1.0" #mandatory
 # Wyświetlana nazwa Twojego moda
-displayName="Aestowy mod Adama" #mandatory
+displayName="AdventureMod" #mandatory
 # Strona Twojego moda
 #displayURL="https://github.com/TwojMod"
 # Logo Twojego moda, jeśli dodasz plik graficzny
@@ -24,11 +24,10 @@ displayName="Aestowy mod Adama" #mandatory
 # Kredyty, np. osoby, które pomogły w stworzeniu moda
 #credits="Stworzone przez [Twoje Imię]"
 # Autorzy Twojego moda
-authors="Adam Sidor" #optional
+authors="Adam Sidor,Szymon Pysz" #optional
 # Opis Twojego moda (może być wielolinijkowy)
 description='''
-To jest mój pierwszy mod do Minecrafta!
-Dodaje nowe bloki i przedmioty do gry.
+Robimy sobie z szymonkiem moda.
 '''
 
 [[dependencies.adventuremod]]
