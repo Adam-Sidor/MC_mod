@@ -20,7 +20,7 @@ public class ModBlockEntities {
     // Funkcja rejestrująca BlockEntity
     public static void register() {
         // Rejestracja bloków najpierw
-        NewBlocks.register(FMLJavaModLoadingContext.get().getModEventBus());
+        //NewBlocks.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         // Teraz rejestrujemy BlockEntity
         BLOCK_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());

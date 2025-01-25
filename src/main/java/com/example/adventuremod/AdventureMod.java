@@ -21,7 +21,7 @@ public class AdventureMod {
         // Rejestracja przedmiotów
         NewItems.ITEMS.register(modEventBus);
         // Rejestracja bloków
-        NewBlocks.register(modEventBus);
+        NewBlocks.BLOCKS.register(modEventBus);
         // Rejestracja BlockEntity
         ModBlockEntities.register();
         // Rejestracja MenuType

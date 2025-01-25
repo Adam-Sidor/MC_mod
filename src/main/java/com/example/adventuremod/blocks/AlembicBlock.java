@@ -9,13 +9,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
 public class AlembicBlock extends Block {
 
-    public AlembicBlock(Properties properties) {
+    public AlembicBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
