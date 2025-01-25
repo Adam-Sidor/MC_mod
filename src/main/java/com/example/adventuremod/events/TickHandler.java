@@ -21,6 +21,9 @@ public class TickHandler {
         if (event.phase == TickEvent.Phase.END && !event.player.level.isClientSide) {
             Player player = event.player;
             tickCounter++;
+            if(player.isInWater()){
+                tickCounter++;
+            }
             if (tickCounter >= TICKS_IN_A_MINUTE) {
                 tickCounter = 0;
                 reduceAlcoholLevel((ServerPlayer) player);
@@ -31,16 +34,16 @@ public class TickHandler {
     private static void reduceAlcoholLevel(ServerPlayer serverPlayer) {
         serverPlayer.getCapability(PlayerAlcoholProvider.PLAYER_ALCOHOL).ifPresent(alcohol -> {
             if(alcohol.getAlcoholLevel()>0){
-                if(alcohol.getAlcoholLevel()>1){
-                    alcohol.reduceAlcohol(2);
-                }else{
-                    alcohol.reduceAlcohol(1);
-                }
+                alcohol.reduceAlcohol(2);
+
                 serverPlayer.sendMessage(
                         new TextComponent("Twój poziom alkoholu zmalał do: " + alcohol.getAlcoholLevel()),
                         ChatType.GAME_INFO,
                         serverPlayer.getUUID()
                 );
+                if(alcohol.getAlcoholLevel()<0){
+                    alcohol.setAlcoholLevel(0);
+                }
             }
         });
     }
