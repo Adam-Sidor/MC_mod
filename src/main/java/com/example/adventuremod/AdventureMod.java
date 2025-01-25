@@ -1,6 +1,6 @@
 package com.example.adventuremod;
 
-import net.minecraft.world.effect.MobEffectInstance;
+import com.example.adventuremod.items.AlcoholItem;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -13,8 +13,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import static net.minecraft.world.effect.MobEffects.CONFUSION;
-
 @Mod(AdventureMod.MODID)
 public class AdventureMod {
     public static final String MODID = "adventuremod";
@@ -22,7 +20,7 @@ public class AdventureMod {
     public static final CreativeModeTab ALCOHOL_TAB = new CreativeModeTab(MODID) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(JAGER.get()); // Ikona zakładki
+            return new ItemStack(JAGER.get());
         }
     };
 
@@ -31,21 +29,20 @@ public class AdventureMod {
     public static final RegistryObject<Item> JAGER = ITEMS.register("jager",
             () -> new AlcoholItem(new Item.Properties()
                     .food(new FoodProperties.Builder()
-                            .nutrition(1) // Punkty jedzenia
-                            .saturationMod(0.3f) // Nasycenie
-                            .alwaysEat() // Można jeść zawsze
+                            .nutrition(1)
+                            .saturationMod(0.3f)
+                            .alwaysEat()
                             .build()
-
                     )
                     .tab(ALCOHOL_TAB)
                     .stacksTo(4)
             )
     );
+
     public AdventureMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ITEMS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
-
     }
 }
