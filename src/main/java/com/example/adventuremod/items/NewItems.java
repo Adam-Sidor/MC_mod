@@ -36,8 +36,22 @@ public class NewItems {
                             .build()
                     )
                     .tab(ALCOHOL_TAB)
-                    .stacksTo(4)
+                    .stacksTo(2)
                     .rarity(Rarity.EPIC)
+            )
+    );
+
+    public static final RegistryObject<Item> BEER = ITEMS.register("beer",
+            () -> new AlcoholItem(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(1)
+                            .saturationMod(0.3f)
+                            .alwaysEat()
+                            .build()
+                    )
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+                    .rarity(Rarity.UNCOMMON)
             )
     );
 }

@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "   ",
-    " K ",
+    " W ",
     " X "
   ],
   "key": {
     "X": {
       "item": "adventuremod:mug"
     },
-    "K": {
-      "item": "minecraft:kelp"
+    "W": {
+      "item": "minecraft:wheat"
     }
   },
   "result": {
-    "item": "adventuremod:jager",
+    "item": "adventuremod:beer",
     "count": 1
   }
 }
