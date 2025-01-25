@@ -2,6 +2,8 @@ package com.example.adventuremod.events;
 
 import com.example.adventuremod.AdventureMod;
 import com.example.adventuremod.capabilities.PlayerAlcoholProvider;
+import com.example.adventuremod.network.ModPackets;
+import com.example.adventuremod.network.SyncAlcoholLevelPacket;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -10,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.NetworkDirection;
 
 import static net.minecraft.world.effect.MobEffects.*;
 
@@ -32,6 +35,7 @@ public class TickHandler {
                 reduceAlcoholLevel((ServerPlayer) player);
             }
             setAlcoholEffects((ServerPlayer) player);
+            syncAlcoholLevel((ServerPlayer) player);
         }
     }
 
@@ -62,6 +66,16 @@ public class TickHandler {
                         serverPlayer.getUUID()
                 );
             }
+        });
+    }
+
+    private static void syncAlcoholLevel(ServerPlayer serverPlayer) {
+        serverPlayer.getCapability(PlayerAlcoholProvider.PLAYER_ALCOHOL).ifPresent(alcohol -> {
+            ModPackets.INSTANCE.sendTo(
+                    new SyncAlcoholLevelPacket(alcohol.getAlcoholLevel()),
+                    ((ServerPlayer) serverPlayer).connection.connection,
+                    NetworkDirection.PLAY_TO_CLIENT
+            );
         });
     }
 }

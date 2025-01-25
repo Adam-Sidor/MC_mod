@@ -2,6 +2,7 @@ package com.example.adventuremod;
 
 import com.example.adventuremod.events.TickHandler;
 import com.example.adventuremod.items.NewItems;
+import com.example.adventuremod.network.ModPackets;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -17,5 +18,6 @@ public class AdventureMod {
         NewItems.ITEMS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new TickHandler());
+        ModPackets.register();
     }
 }
