@@ -1,48 +1,20 @@
 package com.example.adventuremod;
 
 import com.example.adventuremod.events.TickHandler;
-import com.example.adventuremod.items.AlcoholItem;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import com.example.adventuremod.items.NewItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+
 
 @Mod(AdventureMod.MODID)
 public class AdventureMod {
     public static final String MODID = "adventuremod";
 
-    public static final CreativeModeTab ALCOHOL_TAB = new CreativeModeTab(MODID) {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(JAGER.get());
-        }
-    };
-
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
-
-    public static final RegistryObject<Item> JAGER = ITEMS.register("jager",
-            () -> new AlcoholItem(new Item.Properties()
-                    .food(new FoodProperties.Builder()
-                            .nutrition(1)
-                            .saturationMod(0.3f)
-                            .alwaysEat()
-                            .build()
-                    )
-                    .tab(ALCOHOL_TAB)
-                    .stacksTo(4)
-            )
-    );
-
     public AdventureMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ITEMS.register(modEventBus);
+        NewItems.ITEMS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new TickHandler());
     }

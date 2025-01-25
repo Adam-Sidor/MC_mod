@@ -47,7 +47,7 @@ public class TickHandler {
                     break;
                 case 18,19,20:
                     serverPlayer.addEffect(new MobEffectInstance(CONFUSION,2,2,false,true,false));
-                    serverPlayer.addEffect(new MobEffectInstance(BLINDNESS,5,2,false,true,false));
+                    serverPlayer.addEffect(new MobEffectInstance(BLINDNESS,5,10,false,true,false));
                     break;
             }
         });
