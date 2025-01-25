@@ -1,13 +1,12 @@
 package com.example.adventuremod.items;
 
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import static com.example.adventuremod.blocks.NewBlocks.ALEMBIC;
 
 public class NewItems {
 
@@ -19,6 +18,8 @@ public class NewItems {
     };
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "adventuremod");
+
+    public static final RegistryObject<Item> ALEMBIC_ITEM = ITEMS.register("alembic", () -> new BlockItem(ALEMBIC.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> MUG = ITEMS.register("mug",
             () -> new Item(new Item.Properties()
