@@ -1,18 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "   ",
-    " W ",
-    " X "
-  ],
-  "key": {
-    "X": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
       "item": "adventuremod:mug"
     },
-    "W": {
+    {
       "item": "minecraft:wheat"
     }
-  },
+  ],
   "result": {
     "item": "adventuremod:beer",
     "count": 1

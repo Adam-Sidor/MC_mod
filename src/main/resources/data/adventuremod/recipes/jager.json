@@ -1,18 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "   ",
-    " K ",
-    " X "
-  ],
-  "key": {
-    "X": {
-      "item": "adventuremod:mug"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
     },
-    "K": {
+    {
+      "item": "adventuremod:bottle"
+    },
+    {
       "item": "minecraft:kelp"
     }
-  },
+  ],
   "result": {
     "item": "adventuremod:jager",
     "count": 1

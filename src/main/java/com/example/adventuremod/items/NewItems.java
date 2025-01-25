@@ -27,6 +27,13 @@ public class NewItems {
             )
     );
 
+    public static final RegistryObject<Item> BOTTLE = ITEMS.register("bottle",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(16)
+            )
+    );
+
     public static final RegistryObject<Item> JAGER = ITEMS.register("jager",
             () -> new AlcoholItem(new Item.Properties()
                     .food(new FoodProperties.Builder()
