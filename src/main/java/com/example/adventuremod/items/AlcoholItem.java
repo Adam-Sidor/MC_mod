@@ -12,8 +12,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 
 public class AlcoholItem extends Item {
-    public AlcoholItem(Properties properties) {
+    int amountOfAlcohol;
+    public AlcoholItem(Properties properties,int amountOfAlcohol) {
         super(properties);
+        this.amountOfAlcohol = amountOfAlcohol;
     }
 
     @Override
@@ -21,7 +23,7 @@ public class AlcoholItem extends Item {
         if (!level.isClientSide) {
             if (player instanceof ServerPlayer serverPlayer) {
                 player.getCapability(PlayerAlcoholProvider.PLAYER_ALCOHOL).ifPresent(alcohol -> {
-                    if(alcohol.addAlcohol(1)){
+                    if(alcohol.addAlcohol(amountOfAlcohol)) {
                         serverPlayer.sendMessage(
                                 new TextComponent("Twój poziom alkoholu wzrósł do: " + alcohol.getAlcoholLevel()),
                                 ChatType.GAME_INFO,

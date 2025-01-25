@@ -38,6 +38,7 @@ public class NewItems {
                     .tab(ALCOHOL_TAB)
                     .stacksTo(2)
                     .rarity(Rarity.EPIC)
+                    ,2
             )
     );
 
@@ -52,6 +53,7 @@ public class NewItems {
                     .tab(ALCOHOL_TAB)
                     .stacksTo(4)
                     .rarity(Rarity.UNCOMMON)
+                    ,1
             )
     );
 }
