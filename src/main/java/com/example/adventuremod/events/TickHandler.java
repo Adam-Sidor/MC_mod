@@ -19,7 +19,7 @@ import static net.minecraft.world.effect.MobEffects.*;
 @Mod.EventBusSubscriber(modid = AdventureMod.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class TickHandler {
 
-    private static final int TICKS_IN_A_MINUTE = 600;  // 1 minuta = 1200 ticków
+    private static final int TICKS_IN_A_MINUTE = 600; //30 sekund
     private static int tickCounter = 0;
 
     @SubscribeEvent
@@ -27,7 +27,7 @@ public class TickHandler {
         if (event.phase == TickEvent.Phase.END && !event.player.level.isClientSide) {
             Player player = event.player;
             tickCounter++;
-            if(player.isInWater()){
+            if(player.isInWater()||player.isInPowderSnow){
                 tickCounter++;
             }
             if (tickCounter >= TICKS_IN_A_MINUTE) {
