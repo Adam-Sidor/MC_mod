@@ -33,17 +33,12 @@ public class TickHandler {
 
     private static void reduceAlcoholLevel(ServerPlayer serverPlayer) {
         serverPlayer.getCapability(PlayerAlcoholProvider.PLAYER_ALCOHOL).ifPresent(alcohol -> {
-            if(alcohol.getAlcoholLevel()>0){
-                alcohol.reduceAlcohol(2);
-
+            if(alcohol.reduceAlcohol(2)){
                 serverPlayer.sendMessage(
                         new TextComponent("Twój poziom alkoholu zmalał do: " + alcohol.getAlcoholLevel()),
                         ChatType.GAME_INFO,
                         serverPlayer.getUUID()
                 );
-                if(alcohol.getAlcoholLevel()<0){
-                    alcohol.setAlcoholLevel(0);
-                }
             }
         });
     }

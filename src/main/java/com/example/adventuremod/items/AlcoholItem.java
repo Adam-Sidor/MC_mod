@@ -26,24 +26,18 @@ public class AlcoholItem extends Item {
                 serverPlayer.addEffect(new MobEffectInstance(CONFUSION, 200));
 
                 player.getCapability(PlayerAlcoholProvider.PLAYER_ALCOHOL).ifPresent(alcohol -> {
-                    if(alcohol.getAlcoholLevel()<=19){
-                        alcohol.addAlcohol(1);
-
+                    if(alcohol.addAlcohol(1)){
                         serverPlayer.sendMessage(
                                 new TextComponent("Twój poziom alkoholu wzrósł do: " + alcohol.getAlcoholLevel()),
                                 ChatType.GAME_INFO,
                                 serverPlayer.getUUID()
                         );
-
                         System.out.println("Twój poziom alkoholu wzrósł do: " + alcohol.getAlcoholLevel());
-                    }else{
-                        serverPlayer.kill();
                     }
                 });
             }
         }
 
-        // Zwróć przedmiot
         return InteractionResultHolder.success(player.getItemInHand(hand));
     }
 }

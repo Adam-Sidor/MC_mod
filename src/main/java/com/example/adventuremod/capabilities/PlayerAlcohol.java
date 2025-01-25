@@ -9,17 +9,32 @@ public class PlayerAlcohol implements IPlayerAlcohol {
     }
 
     @Override
-    public void setAlcoholLevel(int level) {
-        this.alcoholLevel = level;
+    public boolean setAlcoholLevel(int level) {
+        if(level > 0 && level <= 20) {
+            this.alcoholLevel = level;
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void addAlcohol(int amount) {
-        this.alcoholLevel += amount;
+    public boolean addAlcohol(int amount) {
+        int newLevel = Math.min(20, this.alcoholLevel + amount);
+        if(this.alcoholLevel != newLevel) {
+            this.alcoholLevel = newLevel;
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void reduceAlcohol(int amount) {
-        this.alcoholLevel -= amount;
+    public boolean reduceAlcohol(int amount) {
+        int newLevel = Math.max(0, this.alcoholLevel - amount);
+        if(this.alcoholLevel != newLevel) {
+            this.alcoholLevel = newLevel;
+            return true;
+        }
+        return false;
     }
+
 }
