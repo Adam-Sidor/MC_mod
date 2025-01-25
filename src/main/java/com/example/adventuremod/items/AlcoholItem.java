@@ -10,9 +10,6 @@ import com.example.adventuremod.capabilities.PlayerAlcoholProvider;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
-
-import static net.minecraft.world.effect.MobEffects.CONFUSION;
 
 public class AlcoholItem extends Item {
     public AlcoholItem(Properties properties) {
@@ -23,8 +20,6 @@ public class AlcoholItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (!level.isClientSide) {
             if (player instanceof ServerPlayer serverPlayer) {
-                serverPlayer.addEffect(new MobEffectInstance(CONFUSION, 200));
-
                 player.getCapability(PlayerAlcoholProvider.PLAYER_ALCOHOL).ifPresent(alcohol -> {
                     if(alcohol.addAlcohol(1)){
                         serverPlayer.sendMessage(
@@ -33,6 +28,9 @@ public class AlcoholItem extends Item {
                                 serverPlayer.getUUID()
                         );
                         System.out.println("Twój poziom alkoholu wzrósł do: " + alcohol.getAlcoholLevel());
+                    }
+                    else{
+                        serverPlayer.kill();
                     }
                 });
             }

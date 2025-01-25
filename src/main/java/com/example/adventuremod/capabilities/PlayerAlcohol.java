@@ -10,7 +10,7 @@ public class PlayerAlcohol implements IPlayerAlcohol {
 
     @Override
     public boolean setAlcoholLevel(int level) {
-        if(level > 0 && level <= 20) {
+        if(level >= 0 && level <= 20) {
             this.alcoholLevel = level;
             return true;
         }
