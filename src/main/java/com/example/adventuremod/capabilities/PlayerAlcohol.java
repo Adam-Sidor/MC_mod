@@ -17,4 +17,9 @@ public class PlayerAlcohol implements IPlayerAlcohol {
     public void addAlcohol(int amount) {
         this.alcoholLevel += amount;
     }
+
+    @Override
+    public void reduceAlcohol(int amount) {
+        this.alcoholLevel -= amount;
+    }
 }

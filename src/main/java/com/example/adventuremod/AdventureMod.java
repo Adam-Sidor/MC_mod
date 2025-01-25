@@ -1,5 +1,6 @@
 package com.example.adventuremod;
 
+import com.example.adventuremod.events.TickHandler;
 import com.example.adventuremod.items.AlcoholItem;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
@@ -41,8 +42,8 @@ public class AdventureMod {
 
     public AdventureMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         ITEMS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new TickHandler());
     }
 }
