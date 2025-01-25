@@ -2,6 +2,7 @@ package com.example.adventuremod.blocks;
 
 import com.example.adventuremod.blocks.entities.AlembicEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -16,11 +17,35 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Random;
+
 public class AlembicBlock extends Block  implements EntityBlock {
 
 
     public AlembicBlock(BlockBehaviour.Properties properties) {
         super(properties);
+    }
+    @Override
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+        // Twoja logika co tick
+        System.out.println("Tick wykonany na AlembicBlock w pozycji: " + pos);
+
+        // Rejestruj następny tick
+        world.scheduleTick(pos, this, 20);  // Wywołuje tick co 20 ticków (1 sekunda)
+
+        // Na przykład: uaktualnianie stanu BlockEntity
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof AlembicEntity) {
+            ((AlembicEntity) blockEntity).tick();
+        }
+    }
+
+    @Override
+    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean isMoving) {
+        if (!world.isClientSide) {
+            ((ServerLevel) world).scheduleTick(pos, this, 20);  // Rejestracja ticka po postawieniu bloku
+        }
+        super.onPlace(state, world, pos, oldState, isMoving);
     }
 
     @Override

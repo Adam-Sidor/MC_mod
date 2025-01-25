@@ -16,22 +16,24 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class AlembicEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
 
-    private final ItemStackHandler itemHandler = new ItemStackHandler(5);  // 5 slotów: Woda, Paliwo, 3 składniki
+    private final ItemStackHandler itemHandler = new ItemStackHandler(6);  // 6 slotów: Woda, Paliwo, 3 składniki, Wynik
 
     public AlembicEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALEMBIC.get(), pos, state);
     }
-
+    public void tick() {
+        process();
+    }
     // Metoda przetwarzająca składniki
     public void process() {
         ItemStack waterSlot = itemHandler.getStackInSlot(0);  // Slot na wodę
         ItemStack fuelSlot = itemHandler.getStackInSlot(1);   // Slot na paliwo
-
+        System.out.println(waterSlot+" "+fuelSlot);
         if (waterSlot.getItem() == Items.WATER_BUCKET && !fuelSlot.isEmpty()) {  // Jeżeli mamy wodę i paliwo
             ItemStack input1 = itemHandler.getStackInSlot(2);  // Składnik 1
             ItemStack input2 = itemHandler.getStackInSlot(3);  // Składnik 2
             ItemStack input3 = itemHandler.getStackInSlot(4);  // Składnik 3
-
+            System.out.println(input1+" "+input2+" "+input3);
             // Sprawdzamy, czy wszystkie sloty mają składniki
             if (!input1.isEmpty() && !input2.isEmpty() && !input3.isEmpty()) {
                 // Tworzymy wynik na podstawie receptury
@@ -44,7 +46,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
                     input3.shrink(1);
 
                     // Ustawiamy nowy wynik w odpowiednim slocie
-                    itemHandler.setStackInSlot(2, result);
+                    itemHandler.setStackInSlot(5, result);  // Wynik w slocie 5
 
                     // Zużywamy wodę i paliwo
                     waterSlot.shrink(1);
@@ -72,4 +74,5 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
     public ItemStackHandler getItemHandler() {
         return itemHandler;
     }
+
 }

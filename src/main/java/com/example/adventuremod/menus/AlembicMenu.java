@@ -5,6 +5,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -16,11 +17,19 @@ public class AlembicMenu extends AbstractContainerMenu {
         this.blockEntity = blockEntity;
 
         // Sloty bloku (woda, paliwo, składniki)
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 0, 20, 35));
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 50, 35));
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 2, 80, 35));
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 3, 110, 35));
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 4, 140, 35));
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 0, 10, 35)); // Slot 0
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 30, 35)); // Slot 1
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 2, 50, 35)); // Slot 2
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 3, 70, 35)); // Slot 3
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 4, 90, 35)); // Slot 4
+
+        // Slot na wynik (gdzie nie można nic włożyć)
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 5, 120, 35)) /*{  // Slot 5
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return false;  // Umożliwiamy tylko odbiór, ale nie wkładanie przedmiotów
+            }
+        })*/;
 
         // Sloty gracza
         for (int row = 0; row < 3; ++row) {
@@ -37,13 +46,4 @@ public class AlembicMenu extends AbstractContainerMenu {
     public boolean stillValid(Player player) {
         return blockEntity != null && blockEntity.getBlockPos().distSqr(player.blockPosition()) < 64;
     }
-
-    private void addPlayerSlots(Inventory playerInventory) {
-        // Logika dodawania slotów gracza
-    }
-
-    private void addContainerSlots(ItemStackHandler handler) {
-        // Logika dodawania slotów kontenera
-    }
-
 }

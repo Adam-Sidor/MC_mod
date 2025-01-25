@@ -7,16 +7,11 @@ import com.example.adventuremod.menus.ModMenuTypes;
 import com.example.adventuremod.events.TickHandler;
 import com.example.adventuremod.items.NewItems;
 import com.example.adventuremod.network.ModPackets;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import com.example.adventuremod.overlay.AlembicScreen;
 
 @Mod(AdventureMod.MODID)
 public class AdventureMod {
