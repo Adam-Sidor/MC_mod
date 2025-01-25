@@ -29,7 +29,10 @@ public class CustomHUD {
         int screenHeight = mc.getWindow().getGuiScaledHeight();
         int x = screenWidth / 2 + 10;
         int y;
-        if(player.getAirSupply()<300){
+        if(player.isCreative()){
+            y = screenHeight - 34;
+        }
+        else if(player.getAirSupply()<300){
             y = screenHeight - 59;
         }
         else {
