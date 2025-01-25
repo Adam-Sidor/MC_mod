@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "up": "adventuremod:block/alembic_top",
+    "down": "adventuremod:block/alembic_top",
+    "north": "adventuremod:block/alembic_side",
+    "south": "adventuremod:block/alembic_side",
+    "west": "adventuremod:block/alembic_side",
+    "east": "adventuremod:block/alembic_side"
+  }
+}

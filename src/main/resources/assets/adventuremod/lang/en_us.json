@@ -4,5 +4,6 @@
   "item.adventuremod.mug": "Mug",
   "item.adventuremod.beer": "Beer",
   "item.adventuremod.vodka": "Vodka",
-  "itemGroup.alcohol_tab": "Alcohols"
+  "itemGroup.alcohol_tab": "Alcohols",
+  "block.adventuremod.alembic" : "Alembic"
 }
