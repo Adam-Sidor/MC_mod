@@ -7,6 +7,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.extensions.IForgeMenuType;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -25,7 +26,7 @@ public class ModMenuTypes {
             })
     );
 
-    public static void register() {
-        MENU_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+    public static void register(IEventBus modEventBus) {
+        MENU_TYPES.register(modEventBus);
     }
 }

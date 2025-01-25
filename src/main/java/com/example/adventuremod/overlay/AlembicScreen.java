@@ -13,6 +13,8 @@ public class AlembicScreen extends AbstractContainerScreen<AlembicMenu> {
 
     public AlembicScreen(AlembicMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
+        this.imageWidth = 176;
+        this.imageHeight = 166;
     }
 
     @Override
