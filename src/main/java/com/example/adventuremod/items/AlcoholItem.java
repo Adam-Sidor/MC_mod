@@ -30,8 +30,6 @@ public class AlcoholItem extends Item {
         // Rozpoczęcie animacji picia
         player.startUsingItem(hand);
 
-
-
         return InteractionResultHolder.consume(itemStack);
     }
 

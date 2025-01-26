@@ -5,9 +5,15 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.ItemStackHandler;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.items.SlotItemHandler;
+
+import java.util.Arrays;
+
+import static com.example.adventuremod.items.NewItems.BOTTLE;
+import static com.example.adventuremod.items.NewItems.MUG;
 
 public class AlembicMenu extends AbstractContainerMenu {
     private final AlembicEntity blockEntity;
@@ -17,13 +23,30 @@ public class AlembicMenu extends AbstractContainerMenu {
         this.blockEntity = blockEntity;
 
         // Sloty bloku (woda, paliwo, składniki)
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 0, 10, 35)); // Slot 0
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 30, 35)); // Slot 1
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 2, 50, 35)); // Slot 2
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 0, 10, 35){
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.getItem() == Items.WATER_BUCKET;
+            }
+        });
+
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 30, 35){
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL;
+            }
+        });
+
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 2, 50, 35){
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.getItem() == BOTTLE.get()|| stack.getItem() == MUG.get();
+            }
+        });
+
         addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 3, 70, 35)); // Slot 3
         addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 4, 90, 35)); // Slot 4
 
-        // Slot na wynik (gdzie nie można nic włożyć)
         addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 5, 120, 35) {  // Slot 5
             @Override
             public boolean mayPlace(ItemStack stack) {
