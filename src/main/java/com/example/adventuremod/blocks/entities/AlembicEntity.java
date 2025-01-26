@@ -144,7 +144,6 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
             }
         }
         ItemStack fuelSlot = itemHandler.getStackInSlot(1);
-        System.out.println(canFuelStart);
         if(fuelSlot.getItem() == Items.COAL && fuelLevel<=0 && canFuelStart){
             fuelLevel = 8;
             fuelSlot.shrink(1);

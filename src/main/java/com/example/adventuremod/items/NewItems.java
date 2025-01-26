@@ -180,7 +180,7 @@ public class NewItems {
                             .build()
                     )
                     .tab(ALCOHOL_TAB)
-                    .stacksTo(1)
+                    .stacksTo(16)
                     .rarity(Rarity.UNCOMMON)
                     ,4
                     ,new ItemStack(BOTTLE.get())
