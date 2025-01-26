@@ -92,7 +92,40 @@ public class NewItems {
     public static final RegistryObject<Item> HOP = ITEMS.register("hop",
             () -> new Item(new Item.Properties()
                     .tab(ALCOHOL_TAB)
-                    .stacksTo(64)
             )
     );
+
+    public static final RegistryObject<Item> BARLEY = ITEMS.register("barley",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+            )
+    );
+
+    public static final RegistryObject<Item> CIDER = ITEMS.register("cider",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+            )
+    );
+
+    public static final RegistryObject<Item> GRAPE = ITEMS.register("grape",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+            )
+    );
+
+    public static final RegistryObject<Item> RUM = ITEMS.register("rum",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(1)
+            )
+    );
+
+    public static final RegistryObject<Item> TEQUILA = ITEMS.register("tequila",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(1)
+            )
+    );
+
 }
