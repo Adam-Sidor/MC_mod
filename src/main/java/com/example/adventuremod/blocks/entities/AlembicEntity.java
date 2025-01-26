@@ -1,9 +1,11 @@
 package com.example.adventuremod.blocks.entities;
 
+import com.example.adventuremod.blocks.AlembicBlock;
 import com.example.adventuremod.menus.AlembicMenu;
 import com.example.adventuremod.recipes.AlembicRecipes;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerLevel;
@@ -32,6 +34,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
     ItemStack waitingItem;
     private final ItemStackHandler itemHandler = new ItemStackHandler(6);
     private BlockPos pos;
+    Direction facing;
     public AlembicEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALEMBIC.get(), pos, state);
         this.waterLevel = 0;
@@ -41,7 +44,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
         timeLeft = 40;
         canFuelStart = false;
         this.pos = pos;
-
+        facing = this.getFacing();
     }
 
     public ContainerData getData() {
@@ -160,29 +163,45 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
     }
 
     private void generateParticles(){
-        Random random = new Random();
-
-
-            if (fuelLevel > 0) {
-                double x = pos.getX() + 0.5 + (random.nextDouble() - 0.5) * 0.5;
-                double y = pos.getY() + 1.1;
-                double z = pos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.5;
-                if (level instanceof ServerLevel serverLevel) {
-                    serverLevel.sendParticles(
-                            ParticleTypes.FLAME,  // Typ cząsteczki
-                            pos.getX() + 0.5,     // X
-                            pos.getY() ,          // Y
-                            pos.getZ() + 0.75,     // Z
-                            2,                    // Liczba cząsteczek
-                            0.01,                  // Offset X
-                            0.01,                  // Offset Y
-                            0.01,                  // Offset Z
-                            0.01                  // Prędkość
-                    );
-                }else{
-                }
+        if (fuelLevel > 0) {
+            double x = pos.getX();
+            double y = pos.getY();
+            double z = pos.getZ();
+            switch(facing){
+                case NORTH:
+                    x+=0.25;
+                    z+=0.5;
+                    break;
+                case SOUTH:
+                    x+=0.75;
+                    z+=0.5;
+                    break;
+                case EAST:
+                    x+=0.5;
+                    z+=0.25;
+                    break;
+                case WEST:
+                    x+=0.5;
+                    z+=0.75;
+                    break;
             }
-
+            if (level instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(
+                        ParticleTypes.FLAME,  // Typ cząsteczki
+                        x,
+                        y,
+                        z,
+                        2,                    // Liczba cząsteczek
+                        0.01,                  // Offset X
+                        0.01,                  // Offset Y
+                        0.01,                  // Offset Z
+                        0.01                  // Prędkość
+                );
+            }
+        }
+    }
+    public Direction getFacing() {
+        return this.getBlockState().getValue(AlembicBlock.FACING);
     }
 
     // MenuProvider - nazwa GUI wyświetlana na ekranie
