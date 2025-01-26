@@ -9,6 +9,10 @@
   "item.adventuremod.cider": "Cider",
   "item.adventuremod.grape": "Grape",
   "item.adventuremod.rum": "Rum",
+  "item.adventuremod.mead": "Mead",
+  "item.adventuremod.spirit": "Spirit",
+  "item.adventuremod.vine": "Vine",
+  "item.adventuremod.whiskey": "Whiskey",
   "item.adventuremod.tequila": "Tequila",
   "itemGroup.alcohol_tab": "Alcohols",
   "block.adventuremod.alembic" : "Alembic"
