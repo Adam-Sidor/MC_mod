@@ -3,6 +3,7 @@ package com.example.adventuremod.blocks;
 import com.example.adventuremod.blocks.entities.AlembicEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -89,6 +90,18 @@ public class AlembicBlock extends Block implements EntityBlock {
     public AlembicBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
+        super.animateTick(state, level, pos, random);
+
+        if (random.nextFloat() < 0.3F) { // 30% szansy na wyświetlenie
+            double x = pos.getX() + 0.5 + (random.nextDouble() - 0.5) * 0.5; // Losowa pozycja X
+            double y = pos.getY() + 1.1;                                     // Pozycja nad blokiem
+            double z = pos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.5; // Losowa pozycja Z
+            level.addParticle(ParticleTypes.FLAME, x, y, z, 0, 0.02, 0); // Dodanie cząsteczek
+        }
     }
 
     @Override

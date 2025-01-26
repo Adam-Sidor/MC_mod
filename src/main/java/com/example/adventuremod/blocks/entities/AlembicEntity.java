@@ -14,6 +14,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.level.Level;
 
 public class AlembicEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
     private int waterLevel;
@@ -85,7 +87,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
         ItemStack input1 = itemHandler.getStackInSlot(2);  // Składnik 1
         ItemStack input2 = itemHandler.getStackInSlot(3);  // Składnik 2
         ItemStack input3 = itemHandler.getStackInSlot(4);  // Składnik 3
-        if ((!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty())&&waterLevel>0) {
+        if ((!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty()) && waterLevel>0) {
             ItemStack result = AlembicRecipes.getResult(input1, input2, input3,itemHandler.getStackInSlot(5));
             if(!result.isEmpty()){
                 canFuelStart = true;

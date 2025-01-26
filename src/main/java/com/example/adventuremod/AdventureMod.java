@@ -29,13 +29,13 @@ public class AdventureMod {
         ModBlockEntities.register(modEventBus);
         // Rejestracja MenuType
         ModMenuTypes.register(modEventBus);
-
         modEventBus.addListener(this::setup);
         // Rejestracja wydarzeń
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new TickHandler());
         // Rejestracja pakietów
         ModPackets.register();
+        // Rejestracja dropów
         MinecraftForge.EVENT_BUS.register(new GrassDropHandler());
 
     }
