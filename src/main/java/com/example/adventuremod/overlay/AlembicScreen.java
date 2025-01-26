@@ -17,9 +17,31 @@ public class AlembicScreen extends AbstractContainerScreen<AlembicMenu> {
 
     @Override
     protected void renderBg(PoseStack poseStack, float partialTicks, int mouseX, int mouseY) {
-        // Renderowanie GUI
-        RenderSystem.setShaderTexture(0, GUI_TEXTURE); // Ustawienie tekstury GUI
-        blit(poseStack, leftPos, topPos, 0, 0, imageWidth, imageHeight); // Renderowanie tekstury
+        RenderSystem.setShaderTexture(0, GUI_TEXTURE);
+        blit(poseStack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+
+        renderWaterLevel(poseStack);
     }
 
+
+    private void renderWaterLevel(PoseStack poseStack) {
+        int waterLevel = menu.waterLevel;
+        System.out.println("WW"+waterLevel);
+        final int maxWaterLevel = 4;
+
+        int waterHeight = (int) ((waterLevel / (float) maxWaterLevel) * 52); // Wysokość wskaźnika w pikselach (zakładam maksymalną wysokość 52 px)
+
+        // Pozycja wskaźnika na GUI
+        int waterX = leftPos + 20; // Pozycja X wskaźnika
+        int waterY = topPos + 17 + (52 - waterHeight); // Pozycja Y wskaźnika (od dołu)
+
+        blit(poseStack, waterX, waterY, 200, 200, 16, waterHeight); // Tekstura wskaźnika zaczyna się od (176, 0) i ma szerokość 16 px
+    }
+
+    @Override
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float delta) {
+        renderBackground(poseStack);
+        super.render(poseStack, mouseX, mouseY, delta);
+        renderTooltip(poseStack, mouseX, mouseY);
+    }
 }
