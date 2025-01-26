@@ -93,18 +93,6 @@ public class AlembicBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
-        super.animateTick(state, level, pos, random);
-
-        if (random.nextFloat() < 0.3F) { // 30% szansy na wyświetlenie
-            double x = pos.getX() + 0.5 + (random.nextDouble() - 0.5) * 0.5; // Losowa pozycja X
-            double y = pos.getY() + 1.1;                                     // Pozycja nad blokiem
-            double z = pos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.5; // Losowa pozycja Z
-            level.addParticle(ParticleTypes.FLAME, x, y, z, 0, 0.02, 0); // Dodanie cząsteczek
-        }
-    }
-
-    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }

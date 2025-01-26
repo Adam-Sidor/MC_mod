@@ -2,9 +2,11 @@ package com.example.adventuremod.blocks.entities;
 
 import com.example.adventuremod.menus.AlembicMenu;
 import com.example.adventuremod.recipes.AlembicRecipes;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -17,6 +19,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.Level;
 
+import java.util.Random;
+
 public class AlembicEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
     private int waterLevel;
     private int fuelLevel;
@@ -27,7 +31,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
     private int timeLeft;
     ItemStack waitingItem;
     private final ItemStackHandler itemHandler = new ItemStackHandler(6);
-
+    private BlockPos pos;
     public AlembicEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALEMBIC.get(), pos, state);
         this.waterLevel = 0;
@@ -36,6 +40,8 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
         canProduce = true;
         timeLeft = 40;
         canFuelStart = false;
+        this.pos = pos;
+
     }
 
     public ContainerData getData() {
@@ -80,6 +86,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
         if(canProduce)
             process();
         fuelManagement();
+        generateParticles();
     }
     // Metoda przetwarzająca składniki
     public void process() {
@@ -150,6 +157,32 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
             fuelLevel = 8;
             fuelSlot.shrink(1);
         }
+    }
+
+    private void generateParticles(){
+        Random random = new Random();
+
+
+            if (fuelLevel > 0) {
+                double x = pos.getX() + 0.5 + (random.nextDouble() - 0.5) * 0.5;
+                double y = pos.getY() + 1.1;
+                double z = pos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.5;
+                if (level instanceof ServerLevel serverLevel) {
+                    serverLevel.sendParticles(
+                            ParticleTypes.FLAME,  // Typ cząsteczki
+                            pos.getX() + 0.5,     // X
+                            pos.getY() ,          // Y
+                            pos.getZ() + 0.75,     // Z
+                            2,                    // Liczba cząsteczek
+                            0.01,                  // Offset X
+                            0.01,                  // Offset Y
+                            0.01,                  // Offset Z
+                            0.01                  // Prędkość
+                    );
+                }else{
+                }
+            }
+
     }
 
     // MenuProvider - nazwa GUI wyświetlana na ekranie
