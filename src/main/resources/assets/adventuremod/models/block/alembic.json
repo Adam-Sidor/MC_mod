@@ -1,11 +1,35 @@
 {
   "parent": "block/cube",
   "textures": {
-    "up": "adventuremod:block/alembic_top",
-    "down": "adventuremod:block/alembic_top",
-    "north": "adventuremod:block/alembic_side",
-    "south": "adventuremod:block/alembic_side",
-    "west": "adventuremod:block/alembic_side",
-    "east": "adventuremod:block/alembic_side"
-  }
+    "0": "adventuremod:block/smooth_stone",
+    "1": "adventuremod:block/copper_16",
+    "2": "adventuremod:block/brown"
+  },
+  "elements": [
+    {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 1, 16 ],
+      "faces": {
+        "down":  { "uv": [0,0, 16,16], "texture": "#0", "cullface": "down" },
+        "up":    { "uv": [0,0, 16,16], "texture": "#0", "cullface": "up" },
+        "north": { "uv": [0,0, 16,1], "texture": "#0", "cullface": "north" },
+        "south": { "uv": [0,0, 16,1], "texture": "#0", "cullface": "south" },
+        "west":  { "uv": [0,0, 16,1], "texture": "#0", "cullface": "west" },
+        "east":  { "uv": [0,0, 16,1], "texture": "#0", "cullface": "east" }
+      }
+    },
+    {
+      "from": [11, 1, 7],
+      "to": [14, 6, 10],
+      "faces": {
+        "north": {"uv": [0, 0, 3, 5], "texture": "#2", "cullface": "north"},
+        "east": {"uv": [0, 0, 3, 5], "texture": "#2", "cullface": "east"},
+        "south": {"uv": [0, 0, 3, 5], "texture": "#2", "cullface": "south"},
+        "west": {"uv": [0, 0, 3, 5], "texture": "#2", "cullface": "west"},
+        "up": {"uv": [0, 0, 3, 3], "texture": "#2", "cullface": "up"},
+        "down": {"uv": [0, 0, 3, 3], "texture": "#2", "cullface": "down"}
+      }
+    }
+
+  ]
 }
