@@ -17,10 +17,11 @@ import net.minecraft.server.level.ServerPlayer;
 
 public class AlcoholItem extends Item {
     private final int amountOfAlcohol;
-
+    private final ItemStack itemStack;
     public AlcoholItem(Properties properties, int amountOfAlcohol,ItemStack itemStack) {
         super(properties);
         this.amountOfAlcohol = amountOfAlcohol;
+        this.itemStack = itemStack;
     }
 
     @Override
@@ -53,6 +54,9 @@ public class AlcoholItem extends Item {
                 // Odtwarzanie dźwięku picia
                 level.playSound(null, player.getX(), player.getY(), player.getZ(),
                         SoundEvents.GENERIC_DRINK, SoundSource.PLAYERS, 1.0F, 1.0F);
+                if(!serverPlayer.getInventory().add(itemStack)) {
+                    serverPlayer.drop(itemStack, false);
+                }
             }
         }
 
