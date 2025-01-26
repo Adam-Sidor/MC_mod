@@ -6,6 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,6 +30,13 @@ public class AlcoholItem extends Item {
         // Rozpoczęcie animacji picia
         player.startUsingItem(hand);
 
+
+
+        return InteractionResultHolder.consume(itemStack);
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack item, Level level, LivingEntity player) {
         if (!level.isClientSide) {
             if (player instanceof ServerPlayer serverPlayer) {
                 player.getCapability(PlayerAlcoholProvider.PLAYER_ALCOHOL).ifPresent(alcohol -> {
@@ -49,8 +57,7 @@ public class AlcoholItem extends Item {
                         SoundEvents.GENERIC_DRINK, SoundSource.PLAYERS, 1.0F, 1.0F);
             }
         }
-
-        return InteractionResultHolder.consume(itemStack);
+        return super.finishUsingItem(item, level, player);
     }
 
     @Override
