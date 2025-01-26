@@ -23,31 +23,31 @@ public class AlembicMenu extends AbstractContainerMenu {
         this.blockEntity = blockEntity;
 
         // Sloty bloku (woda, paliwo, składniki)
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 0, 10, 35){
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 0, 20, 17){
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.getItem() == Items.WATER_BUCKET;
             }
         });
 
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 30, 35){
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 56, 53){
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL;
             }
         });
 
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 2, 50, 35){
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 2, 56, 17){
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.getItem() == BOTTLE.get()|| stack.getItem() == MUG.get();
             }
         });
 
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 3, 70, 35)); // Slot 3
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 4, 90, 35)); // Slot 4
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 3, 96, 25)); // Slot 3
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 4, 96, 43)); // Slot 4
 
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 5, 120, 35) {  // Slot 5
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 5, 146, 35) {  // Slot 5
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;

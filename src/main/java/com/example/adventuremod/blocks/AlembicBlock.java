@@ -57,7 +57,6 @@ public class AlembicBlock extends Block  implements EntityBlock {
             if (blockEntity instanceof AlembicEntity) {
                 // Otwieramy GUI Alembica
                 NetworkHooks.openGui((ServerPlayer) player, (AlembicEntity) blockEntity, pos);
-                System.out.println("AlembicEntity received");
             } else {
                 throw new IllegalStateException("Brak odpowiedniego BlockEntity dla Alembica");
             }

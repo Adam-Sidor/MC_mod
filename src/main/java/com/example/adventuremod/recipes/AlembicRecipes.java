@@ -11,11 +11,11 @@ public class AlembicRecipes {
         if(input1.getItem()!=input2.getItem()&&input2.getItem()!=input3.getItem()&&input3.getItem()!=input1.getItem()) {
             if (input1.getItem() == Items.GOLD_INGOT && input2.getItem() == Items.DIAMOND && input3.getItem() == Items.EMERALD) {
                 if((output.getItem()==Items.NETHERITE_SCRAP||output.getItem()==Items.AIR)&&output.getCount()<64) {
-                    return new ItemStack(Items.NETHERITE_SCRAP,output.getCount()+1);
+                    return new ItemStack(Items.NETHERITE_SCRAP);
                 }
             } else if(input1.getItem() == BOTTLE.get()&&(input2.getItem()==Items.KELP||input3.getItem()==Items.KELP)) {
                 if((output.getItem()==JAGER.get()||output.getItem()==Items.AIR)&&output.getCount()<2) {
-                    return new ItemStack(JAGER.get(),output.getCount()+1);
+                    return new ItemStack(JAGER.get());
                 }
             }
         }
