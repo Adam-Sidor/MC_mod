@@ -1,9 +1,15 @@
 {
-  "item.adventuremod.bottle": "Butla",
+  "item.adventuremod.bottle": "Bootle",
   "item.adventuremod.jager": "Jager",
   "item.adventuremod.mug": "Mug",
   "item.adventuremod.beer": "Beer",
   "item.adventuremod.vodka": "Vodka",
+  "item.adventuremod.hop": "Hop",
+  "item.adventuremod.barley": "Barley",
+  "item.adventuremod.cider": "Cider",
+  "item.adventuremod.grape": "Grape",
+  "item.adventuremod.rum": "Rum",
+  "item.adventuremod.tequila": "Tequila",
   "itemGroup.alcohol_tab": "Alcohols",
   "block.adventuremod.alembic" : "Alembic"
 }
