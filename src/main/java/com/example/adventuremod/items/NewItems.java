@@ -53,6 +53,7 @@ public class NewItems {
                     .stacksTo(2)
                     .rarity(Rarity.EPIC)
                     ,2
+                    ,new ItemStack(BOTTLE.get())
             )
     );
 
@@ -68,6 +69,7 @@ public class NewItems {
                     .stacksTo(2)
                     .rarity(Rarity.EPIC)
                     ,2
+                    ,new ItemStack(BOTTLE.get())
             )
     );
 
@@ -83,6 +85,7 @@ public class NewItems {
                     .stacksTo(4)
                     .rarity(Rarity.UNCOMMON)
                     ,1
+                    ,new ItemStack(MUG.get())
             )
     );
 

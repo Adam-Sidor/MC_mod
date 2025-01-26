@@ -18,7 +18,7 @@ import net.minecraft.server.level.ServerPlayer;
 public class AlcoholItem extends Item {
     private final int amountOfAlcohol;
 
-    public AlcoholItem(Properties properties, int amountOfAlcohol) {
+    public AlcoholItem(Properties properties, int amountOfAlcohol,ItemStack itemStack) {
         super(properties);
         this.amountOfAlcohol = amountOfAlcohol;
     }
@@ -55,6 +55,7 @@ public class AlcoholItem extends Item {
                         SoundEvents.GENERIC_DRINK, SoundSource.PLAYERS, 1.0F, 1.0F);
             }
         }
+
         return super.finishUsingItem(item, level, player);
     }
 
