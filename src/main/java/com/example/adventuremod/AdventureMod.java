@@ -3,6 +3,7 @@ package com.example.adventuremod;
 import com.example.adventuremod.blocks.NewBlocks;
 import com.example.adventuremod.blocks.entities.ModBlockEntities;
 import com.example.adventuremod.events.ClientSetupHandler;
+import com.example.adventuremod.events.GrassDropHandler;
 import com.example.adventuremod.menus.ModMenuTypes;
 import com.example.adventuremod.events.TickHandler;
 import com.example.adventuremod.items.NewItems;
@@ -35,6 +36,8 @@ public class AdventureMod {
         MinecraftForge.EVENT_BUS.register(new TickHandler());
         // Rejestracja pakietów
         ModPackets.register();
+        MinecraftForge.EVENT_BUS.register(new GrassDropHandler());
+
     }
 
     private void setup(final FMLCommonSetupEvent event) {

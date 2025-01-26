@@ -24,7 +24,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
     private boolean canProduce;
     private int timeLeft;
     ItemStack waitingItem;
-    private final ItemStackHandler itemHandler = new ItemStackHandler(6);  // 6 slotów: Woda, Paliwo, 3 składniki, Wynik
+    private final ItemStackHandler itemHandler = new ItemStackHandler(6);
 
     public AlembicEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALEMBIC.get(), pos, state);
