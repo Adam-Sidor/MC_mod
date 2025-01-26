@@ -35,22 +35,35 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
         return new ContainerData() {
             @Override
             public int get(int index) {
-                if (index == 0) {
-                    return waterLevel; // Synchronizowanie waterLevel
+                switch (index){
+                case 0:
+                    return waterLevel;
+                case 1:
+                    return fuelLevel;
+                case 2:
+                    return timeLeft;
                 }
                 return 0;
             }
 
             @Override
             public void set(int index, int value) {
-                if (index == 0) {
-                    waterLevel = value; // Zaktualizowanie wartości waterLevel
+                switch (index) {
+                    case 0:
+                        waterLevel = value; // Zaktualizowanie wartości waterLevel
+                        break;
+                    case 1:
+                        fuelLevel = value;
+                        break;
+                    case 2:
+                        timeLeft = value;
+                        break;
                 }
             }
 
             @Override
             public int getCount() {
-                return 1; // Tylko 1 wartość do synchronizacji
+                return 3; // Tylko 1 wartość do synchronizacji
             }
         };
     }

@@ -18,11 +18,15 @@ public class AlembicMenu extends AbstractContainerMenu {
     private final AlembicEntity blockEntity;
     private final ContainerData data;
     public int waterLevel;
+    public int fuelLevel;
+    public int timeLeft;
     public AlembicMenu(int id, Inventory playerInventory, AlembicEntity blockEntity) {
         super(ModMenuTypes.ALEMBIC_MENU.get(), id);
         this.blockEntity = blockEntity;
         this.data = blockEntity.getData();
         this.waterLevel = data.get(0);
+        this.fuelLevel = data.get(1);
+        this.timeLeft = data.get(2);
 
         // Dodanie slotów bloku
         addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 0, 20, 17) {
@@ -64,8 +68,10 @@ public class AlembicMenu extends AbstractContainerMenu {
         for (int col = 0; col < 9; ++col) {
             addSlot(new Slot(playerInventory, col, 8 + col * 18, 142));
         }
+        addDataSlots();
+    }
 
-        // Dodanie synchronizacji poziomu wody
+    void addDataSlots(){
         addDataSlot(new DataSlot() {
             @Override
             public int get() {
@@ -74,7 +80,29 @@ public class AlembicMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int value) {
-                waterLevel = value; // Update the waterLevel field
+                waterLevel = value;
+            }
+        });
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return data.get(1);
+            }
+
+            @Override
+            public void set(int value) {
+                fuelLevel = value;
+            }
+        });
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return data.get(2);
+            }
+
+            @Override
+            public void set(int value) {
+                timeLeft = value;
             }
         });
     }

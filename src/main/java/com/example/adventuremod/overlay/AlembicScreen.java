@@ -26,7 +26,9 @@ public class AlembicScreen extends AbstractContainerScreen<AlembicMenu> {
 
     private void renderWaterLevel(PoseStack poseStack) {
         int waterLevel = menu.waterLevel;
-        System.out.println("WW"+waterLevel);
+        int fuelLevel = menu.fuelLevel;
+        int timeLeft = menu.timeLeft;
+        System.out.println(waterLevel+" "+fuelLevel+" "+timeLeft);
         final int maxWaterLevel = 4;
 
         int waterHeight = (int) ((waterLevel / (float) maxWaterLevel) * 52); // Wysokość wskaźnika w pikselach (zakładam maksymalną wysokość 52 px)
