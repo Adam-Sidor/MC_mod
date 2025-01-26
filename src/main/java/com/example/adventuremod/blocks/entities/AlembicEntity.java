@@ -39,13 +39,13 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
     public void process() {
         waterManagement();
         fuelManagement();
-        System.out.println(waterLevel+" "+fuelLevel);
+        //System.out.println(waterLevel+" "+fuelLevel);
         ItemStack fuelSlot = itemHandler.getStackInSlot(1);   // Slot na paliwo
         if ( waterLevel>0 && fuelLevel>0) {  // Jeżeli mamy wodę i paliwo
             ItemStack input1 = itemHandler.getStackInSlot(2);  // Składnik 1
             ItemStack input2 = itemHandler.getStackInSlot(3);  // Składnik 2
             ItemStack input3 = itemHandler.getStackInSlot(4);  // Składnik 3
-            if (!input1.isEmpty() && !input2.isEmpty() && !input3.isEmpty()) {
+            if (!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty()) {
                 ItemStack result = AlembicRecipes.getResult(input1, input2, input3,itemHandler.getStackInSlot(5));
 
                 if (!result.isEmpty()) {
