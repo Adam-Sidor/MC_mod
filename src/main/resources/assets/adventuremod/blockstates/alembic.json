@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "adventuremod:block/alembic" }
+    "facing=east": { "model": "adventuremod:block/alembic" , "y": 90},
+    "facing=south": { "model": "adventuremod:block/alembic" , "y": 180},
+    "facing=west": { "model": "adventuremod:block/alembic" , "y": 270},
+    "facing=north": { "model": "adventuremod:block/alembic" }
   }
 }
