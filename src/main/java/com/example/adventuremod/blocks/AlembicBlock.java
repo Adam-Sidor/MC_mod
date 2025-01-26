@@ -27,11 +27,8 @@ public class AlembicBlock extends Block  implements EntityBlock {
     }
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
-        // Twoja logika co tick
-        System.out.println("Tick wykonany na AlembicBlock w pozycji: " + pos);
-
         // Rejestruj następny tick
-        world.scheduleTick(pos, this, 20);  // Wywołuje tick co 20 ticków (1 sekunda)
+        world.scheduleTick(pos, this, 1);
 
         // Na przykład: uaktualnianie stanu BlockEntity
         BlockEntity blockEntity = world.getBlockEntity(pos);

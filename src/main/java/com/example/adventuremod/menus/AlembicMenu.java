@@ -24,12 +24,12 @@ public class AlembicMenu extends AbstractContainerMenu {
         addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 4, 90, 35)); // Slot 4
 
         // Slot na wynik (gdzie nie można nic włożyć)
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 5, 120, 35)) /*{  // Slot 5
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 5, 120, 35) {  // Slot 5
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return false;  // Umożliwiamy tylko odbiór, ale nie wkładanie przedmiotów
+                return false;
             }
-        })*/;
+        });
 
         // Sloty gracza
         for (int row = 0; row < 3; ++row) {
