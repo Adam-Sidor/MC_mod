@@ -18,17 +18,22 @@ import net.minecraftforge.items.ItemStackHandler;
 public class AlembicEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
     private int waterLevel;
     private int fuelLevel;
+    private final int fuelMaxTime = 16*20;
+    private int fuelTime;
 
     private boolean canProduce;
     private int timeLeft;
     ItemStack waitingItem;
     private final ItemStackHandler itemHandler = new ItemStackHandler(6);  // 6 slotów: Woda, Paliwo, 3 składniki, Wynik
+
     public AlembicEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALEMBIC.get(), pos, state);
         this.waterLevel = 0;
         fuelLevel = 0;
+        fuelTime = 0;
         canProduce = true;
-        timeLeft = 1;
+        timeLeft = 40;
+
     }
 
     public ContainerData getData() {
@@ -72,11 +77,11 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
         waitUntilFinished();
         if(canProduce)
             process();
+        fuelManagement();
     }
     // Metoda przetwarzająca składniki
     public void process() {
         waterManagement();
-        fuelManagement();
 
         if ( waterLevel>0 && fuelLevel>0) {  // Jeżeli mamy wodę i paliwo
             ItemStack input1 = itemHandler.getStackInSlot(2);  // Składnik 1
@@ -91,7 +96,6 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
                     input2.shrink(1);
                     input3.shrink(1);
                     waterLevel--;
-                    fuelLevel--;
                     // Ustawiamy nowy wynik w odpowiednim slocie
                     setVariablesToWait(result);
                 }
@@ -106,7 +110,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
         }
         if (timeLeft <= 0) {
             canProduce = true;
-            timeLeft = 1;
+            timeLeft = 40;
             ItemStack currentOutput = itemHandler.getStackInSlot(5);
             ItemStack output = new ItemStack(waitingItem.getItem(),currentOutput.getCount()+waitingItem.getCount());
             itemHandler.setStackInSlot(5, output);
@@ -129,6 +133,14 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
     }
 
     private void fuelManagement(){
+        if(fuelLevel>0){
+            fuelTime++;
+            if(fuelTime>fuelMaxTime){
+                fuelLevel--;
+                fuelTime = 0;
+            }
+        }
+        System.out.println(fuelTime);
         ItemStack fuelSlot = itemHandler.getStackInSlot(1);
         if(fuelSlot.getItem() == Items.COAL && fuelLevel<=0){
             fuelLevel = 8;
