@@ -20,7 +20,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
     private int fuelLevel;
     private final int fuelMaxTime = 16*20;
     private int fuelTime;
-
+    private boolean canFuelStart;
     private boolean canProduce;
     private int timeLeft;
     ItemStack waitingItem;
@@ -33,7 +33,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
         fuelTime = 0;
         canProduce = true;
         timeLeft = 40;
-
+        canFuelStart = false;
     }
 
     public ContainerData getData() {
@@ -82,24 +82,27 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
     // Metoda przetwarzająca składniki
     public void process() {
         waterManagement();
-
-        if ( waterLevel>0 && fuelLevel>0) {  // Jeżeli mamy wodę i paliwo
-            ItemStack input1 = itemHandler.getStackInSlot(2);  // Składnik 1
-            ItemStack input2 = itemHandler.getStackInSlot(3);  // Składnik 2
-            ItemStack input3 = itemHandler.getStackInSlot(4);  // Składnik 3
-            if (!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty()) {
-                ItemStack result = AlembicRecipes.getResult(input1, input2, input3,itemHandler.getStackInSlot(5));
-
-                if (!result.isEmpty()) {
-                    // Zużywamy składniki
+        ItemStack input1 = itemHandler.getStackInSlot(2);  // Składnik 1
+        ItemStack input2 = itemHandler.getStackInSlot(3);  // Składnik 2
+        ItemStack input3 = itemHandler.getStackInSlot(4);  // Składnik 3
+        if ((!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty())&&waterLevel>0) {
+            ItemStack result = AlembicRecipes.getResult(input1, input2, input3,itemHandler.getStackInSlot(5));
+            if(!result.isEmpty()){
+                canFuelStart = true;
+                if (fuelLevel>0) {
                     input1.shrink(1);
                     input2.shrink(1);
                     input3.shrink(1);
                     waterLevel--;
-                    // Ustawiamy nowy wynik w odpowiednim slocie
                     setVariablesToWait(result);
                 }
             }
+            else{
+                canFuelStart = false;
+            }
+        }
+        else{
+            canFuelStart = false;
         }
     }
 
@@ -141,7 +144,8 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
             }
         }
         ItemStack fuelSlot = itemHandler.getStackInSlot(1);
-        if(fuelSlot.getItem() == Items.COAL && fuelLevel<=0){
+        System.out.println(canFuelStart);
+        if(fuelSlot.getItem() == Items.COAL && fuelLevel<=0 && canFuelStart){
             fuelLevel = 8;
             fuelSlot.shrink(1);
         }
