@@ -66,6 +66,44 @@ public class AlembicMenu extends AbstractContainerMenu {
     }
 
     @Override
+    public ItemStack quickMoveStack(Player player, int index) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+
+        if (slot != null && slot.hasItem()) {
+            ItemStack stackInSlot = slot.getItem();
+            itemstack = stackInSlot.copy();
+
+            // Zakresy slotów
+            int containerSlots = blockEntity.getItemHandler().getSlots(); // Sloty bloku
+            int playerInventoryStart = containerSlots;
+            int playerHotbarStart = playerInventoryStart + 27;
+            int playerInventoryEnd = playerHotbarStart + 9;
+
+            if (index < containerSlots) {
+                // Przenoszenie z bloku do ekwipunku gracza
+                if (!this.moveItemStackTo(stackInSlot, playerInventoryStart, playerInventoryEnd, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                // Przenoszenie z ekwipunku gracza do bloku
+                if (!this.moveItemStackTo(stackInSlot, 0, containerSlots, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
+            if (stackInSlot.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+        }
+
+        return itemstack;
+    }
+
+
+    @Override
     public boolean stillValid(Player player) {
         return blockEntity != null && blockEntity.getBlockPos().distSqr(player.blockPosition()) < 64;
     }
