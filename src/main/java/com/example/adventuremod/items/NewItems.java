@@ -85,4 +85,11 @@ public class NewItems {
                     ,1
             )
     );
+
+    public static final RegistryObject<Item> HOP = ITEMS.register("hop",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(64)
+            )
+    );
 }
