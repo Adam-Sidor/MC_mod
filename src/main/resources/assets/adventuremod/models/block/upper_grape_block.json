@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "adventuremod:block/upper_grape_block"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "adventuremod:block/grape_block_stage3"
+  }
+}
