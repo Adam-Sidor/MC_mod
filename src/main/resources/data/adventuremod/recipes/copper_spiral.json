@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP ",
+    "PP ",
+    "   "
+  ],
+  "key": {
+    "P": {
+      "item": "adventuremod:copper_pipe"
+    }
+  },
+  "result": {
+    "item": "adventuremod:copper_spiral",
+    "count": 1
+  }
+}

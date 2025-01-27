@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "R C",
+    "   "
+  ],
+  "key": {
+    "C": {
+      "item": "adventuremod:copper_can"
+    },
+    "P": {
+      "item": "adventuremod:copper_pipe"
+    },
+    "R": {
+      "item": "adventuremod:copper_radiator"
+    }
+  },
+  "result": {
+    "item": "adventuremod:alembic_item",
+    "count": 1
+  }
+}

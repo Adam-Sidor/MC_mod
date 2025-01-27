@@ -26,6 +26,32 @@ public class NewItems {
             )
     );
 
+    public static final RegistryObject<Item> COPPER_CAN = ITEMS.register("copper_can",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+            )
+    );
+
+    public static final RegistryObject<Item> COPPER_PIPE = ITEMS.register("copper_pipe",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+            )
+    );
+
+    public static final RegistryObject<Item> COPPER_SPIRAL = ITEMS.register("copper_spiral",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+            )
+    );
+
+    public static final RegistryObject<Item> COPPER_RADIATOR = ITEMS.register("copper_radiator",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+            )
+    );
 
     public static final RegistryObject<Item> MUG = ITEMS.register("mug",
             () -> new Item(new Item.Properties()

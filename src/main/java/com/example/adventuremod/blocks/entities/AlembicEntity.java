@@ -3,7 +3,6 @@ package com.example.adventuremod.blocks.entities;
 import com.example.adventuremod.blocks.AlembicBlock;
 import com.example.adventuremod.menus.AlembicMenu;
 import com.example.adventuremod.recipes.AlembicRecipes;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -19,9 +18,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
 
 public class AlembicEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
     private int waterLevel;
@@ -33,7 +31,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
     private int timeLeft;
     ItemStack waitingItem;
     private final ItemStackHandler itemHandler = new ItemStackHandler(6);
-    private BlockPos pos;
+    private final BlockPos pos;
     Direction facing;
     public AlembicEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALEMBIC.get(), pos, state);
@@ -191,7 +189,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
                         x,
                         y,
                         z,
-                        2,                    // Liczba cząsteczek
+                        2,             // Liczba cząsteczek
                         0.01,                  // Offset X
                         0.01,                  // Offset Y
                         0.01,                  // Offset Z
@@ -206,7 +204,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
 
     // MenuProvider - nazwa GUI wyświetlana na ekranie
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return new TextComponent("Alembic");
     }
 
