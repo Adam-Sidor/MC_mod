@@ -1,5 +1,6 @@
 {
   "variants": {
-    "": { "model": "adventuremod:block/upper_grape_block" }
+    "has_fruit=false": { "model": "adventuremod:block/upper_grape_no_fruit" },
+    "has_fruit=true": { "model": "adventuremod:block/upper_grape_with_fruit" }
   }
 }

@@ -1,6 +1,6 @@
 {
-  "parent": "block/crop",
+  "parent": "block/cross",
   "textures": {
-    "crop": "adventuremod:block/grape_block_stage3"
+    "cross": "adventuremod:block/grape_block_stage3"
   }
 }

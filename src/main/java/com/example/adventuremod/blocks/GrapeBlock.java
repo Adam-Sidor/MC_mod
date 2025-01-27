@@ -6,8 +6,11 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -38,16 +41,15 @@ public class GrapeBlock extends Block {
 
             if (age < 3) {
                 level.setBlock(pos, state.setValue(AGE, age + 1), 2);
-                age = state.getValue(AGE);
                 if (!player.isCreative()) {
                     player.getItemInHand(hand).shrink(1);
                 }
-            }
 
-            if (age == 3) {
-                BlockPos upperPos = pos.above();
-                BlockState upperState = NewBlocks.UPPER_GRAPE_BLOCK.get().defaultBlockState();
-                level.setBlock(upperPos, upperState, 3);
+                if (age == 2) {
+                    BlockPos upperPos = pos.above();
+                    BlockState upperState = NewBlocks.UPPER_GRAPE_BLOCK.get().defaultBlockState();
+                    level.setBlock(upperPos, upperState, 3);
+                }
             }
 
             return InteractionResult.SUCCESS;
@@ -76,4 +78,10 @@ public class GrapeBlock extends Block {
         }
         super.randomTick(state, level, pos, p_60554_);
     }
+
+    @Override
+    public boolean isCollisionShapeFullBlock(BlockState p_181242_, BlockGetter p_181243_, BlockPos p_181244_) {
+        return false;
+    }
+
 }

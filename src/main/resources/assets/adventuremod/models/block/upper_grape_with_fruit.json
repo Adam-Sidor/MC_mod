@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "adventuremod:block/upper_grape_with_fruit"
+  }
+}

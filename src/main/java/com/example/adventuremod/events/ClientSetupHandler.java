@@ -18,6 +18,7 @@ public class ClientSetupHandler {
     public static void onClientSetup(FMLClientSetupEvent event) {
         System.out.println("Registering AlembicScreen");
         MenuScreens.register(ModMenuTypes.ALEMBIC_MENU.get(), AlembicScreen::new);
+
         ItemBlockRenderTypes.setRenderLayer(BARLEY_CROP.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ALEMBIC.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(GRAPE_BLOCK.get(), RenderType.cutout());
