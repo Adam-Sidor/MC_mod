@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "adventuremod:barley"
+  },
+
+  "result": {
+    "item": "adventuremod:barley_roasted",
+    "experience": 0.15,
+    "cookingtime": 100
+  }
+}

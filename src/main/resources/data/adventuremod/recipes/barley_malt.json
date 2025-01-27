@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XWX",
+    "XXX"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:water_bucket"
+    },
+    "X": {
+      "item": "adventuremod:barley"
+    }
+  },
+  "result": {
+    "item": "adventuremod:barley_malt",
+    "count": 8
+  }
+}
