@@ -16,12 +16,11 @@ public class ModBlockEntities {
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, AdventureMod.MODID);
 
     public static final RegistryObject<BlockEntityType<AlembicEntity>> ALEMBIC = BLOCK_ENTITIES.register(
-            "alembic",
+            "alembic_entity",
             () -> BlockEntityType.Builder.of(AlembicEntity::new, NewBlocks.ALEMBIC.get()).build(null)
     );
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
-
     }
 }

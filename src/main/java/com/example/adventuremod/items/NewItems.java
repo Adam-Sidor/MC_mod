@@ -122,7 +122,7 @@ public class NewItems {
             )
     );
 
-    public static final RegistryObject<Item> Hop_SEEDS = ITEMS.register("hop_seeds",
+    public static final RegistryObject<Item> HOP_SEEDS = ITEMS.register("hop_seeds",
             () -> new Item(new Item.Properties()
                     .tab(ALCOHOL_TAB)
             )

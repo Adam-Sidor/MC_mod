@@ -25,7 +25,6 @@ public class NewBlocks {
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);
-        //BLOCK_ENTITIES.register(modEventBus);
     }
 
 }

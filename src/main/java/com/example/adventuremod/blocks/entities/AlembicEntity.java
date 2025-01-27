@@ -20,141 +20,134 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraft.core.particles.ParticleTypes;
 import org.jetbrains.annotations.NotNull;
 
-
 public class AlembicEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
     private int waterLevel;
     private int fuelLevel;
-    private final int fuelMaxTime = 16*20;
+    private final int fuelMaxTime = 16 * 20;
     private int fuelTime;
     private boolean canFuelStart;
     private boolean canProduce;
     private int timeLeft;
-    ItemStack waitingItem;
+    private ItemStack waitingItem;
     private final ItemStackHandler itemHandler = new ItemStackHandler(6);
+    private Direction facing;
+    private int lightLevel;
     private final BlockPos pos;
-    Direction facing;
+
     public AlembicEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALEMBIC.get(), pos, state);
         this.waterLevel = 0;
-        fuelLevel = 0;
-        fuelTime = 0;
-        canProduce = true;
-        timeLeft = 40;
-        canFuelStart = false;
+        this.fuelLevel = 0;
+        this.fuelTime = 0;
+        this.canProduce = true;
+        this.timeLeft = 40;
+        this.canFuelStart = false;
+        this.lightLevel = 0;
         this.pos = pos;
-        facing = this.getFacing();
+        this.facing = getFacing();
     }
 
     public ContainerData getData() {
         return new ContainerData() {
             @Override
             public int get(int index) {
-                switch (index){
-                case 0:
-                    return waterLevel;
-                case 1:
-                    return fuelLevel;
-                case 2:
-                    return timeLeft;
-                }
-                return 0;
+                return switch (index) {
+                    case 0 -> waterLevel;
+                    case 1 -> fuelLevel;
+                    case 2 -> timeLeft;
+                    default -> 0;
+                };
             }
 
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0:
-                        waterLevel = value; // Zaktualizowanie wartości waterLevel
-                        break;
-                    case 1:
-                        fuelLevel = value;
-                        break;
-                    case 2:
-                        timeLeft = value;
-                        break;
+                    case 0 -> waterLevel = value;
+                    case 1 -> fuelLevel = value;
+                    case 2 -> timeLeft = value;
                 }
             }
 
             @Override
             public int getCount() {
-                return 3; // Tylko 1 wartość do synchronizacji
+                return 3;
             }
         };
     }
 
     public void tick() {
         waitUntilFinished();
-        if(canProduce)
+        if (canProduce) {
             process();
+        }
         fuelManagement();
         generateParticles();
+        updateLightLevel(fuelLevel*2);
     }
-    // Metoda przetwarzająca składniki
+
     public void process() {
         waterManagement();
-        ItemStack input1 = itemHandler.getStackInSlot(2);  // Składnik 1
-        ItemStack input2 = itemHandler.getStackInSlot(3);  // Składnik 2
-        ItemStack input3 = itemHandler.getStackInSlot(4);  // Składnik 3
-        if ((!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty()) && waterLevel>0) {
-            ItemStack result = AlembicRecipes.getResult(input1, input2, input3,itemHandler.getStackInSlot(5));
-            if(!result.isEmpty()){
+        ItemStack input1 = itemHandler.getStackInSlot(2);
+        ItemStack input2 = itemHandler.getStackInSlot(3);
+        ItemStack input3 = itemHandler.getStackInSlot(4);
+
+        if ((!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty()) && waterLevel > 0) {
+            ItemStack result = AlembicRecipes.getResult(input1, input2, input3, itemHandler.getStackInSlot(5));
+            if (!result.isEmpty()) {
                 canFuelStart = true;
-                if (fuelLevel>0) {
+                if (fuelLevel > 0) {
                     input1.shrink(1);
                     input2.shrink(1);
                     input3.shrink(1);
                     waterLevel--;
                     setVariablesToWait(result);
                 }
-            }
-            else{
+            } else {
                 canFuelStart = false;
             }
-        }
-        else{
+        } else {
             canFuelStart = false;
         }
     }
 
-
     private void waitUntilFinished() {
-        if(!canProduce){
+        if (!canProduce) {
             timeLeft--;
         }
         if (timeLeft <= 0) {
             canProduce = true;
             timeLeft = 40;
             ItemStack currentOutput = itemHandler.getStackInSlot(5);
-            ItemStack output = new ItemStack(waitingItem.getItem(),currentOutput.getCount()+waitingItem.getCount());
+            ItemStack output = new ItemStack(waitingItem.getItem(), currentOutput.getCount() + waitingItem.getCount());
             itemHandler.setStackInSlot(5, output);
         }
     }
 
-    private void setVariablesToWait(ItemStack result){
+    private void setVariablesToWait(ItemStack result) {
         canProduce = false;
         timeLeft = 40;
         waitingItem = result;
     }
 
-    private void waterManagement(){
+    private void waterManagement() {
         ItemStack waterSlot = itemHandler.getStackInSlot(0);
-        if(waterSlot.getItem() == Items.WATER_BUCKET && waterLevel<=0){
+        if (waterSlot.getItem() == Items.WATER_BUCKET && waterLevel <= 0) {
             waterLevel = 4;
             waterSlot.shrink(1);
             itemHandler.setStackInSlot(0, new ItemStack(Items.BUCKET));
         }
     }
 
-    private void fuelManagement(){
-        if(fuelLevel>0){
+    private void fuelManagement() {
+        if (fuelLevel > 0) {
             fuelTime++;
-            if(fuelTime>fuelMaxTime){
+            if (fuelTime > fuelMaxTime) {
                 fuelLevel--;
                 fuelTime = 0;
             }
         }
         ItemStack fuelSlot = itemHandler.getStackInSlot(1);
-        if(fuelSlot.getItem() == Items.COAL && fuelLevel<=0 && canFuelStart){
+        if (fuelSlot.getItem() == Items.COAL && fuelLevel <= 0 && canFuelStart) {
             fuelLevel = 8;
             fuelSlot.shrink(1);
         }
@@ -198,25 +191,46 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
             }
         }
     }
+
+    private void updateLightLevel(int newLightLevel) {
+        if (this.lightLevel != newLightLevel) {
+            setLightLevel(newLightLevel);
+        }
+    }
+
+    public void setLightLevel(int lightLevel) {
+        this.lightLevel = Math.min(Math.max(lightLevel, 0), 15);
+        if (level != null && !level.isClientSide) {
+            level.setBlock(worldPosition, getBlockState().setValue(AlembicBlock.LIGHT_LEVEL, this.lightLevel), 3);
+            level.updateNeighborsAt(worldPosition, getBlockState().getBlock());
+            level.getLightEngine().checkBlock(worldPosition);
+        }
+    }
+
+
     public Direction getFacing() {
         return this.getBlockState().getValue(AlembicBlock.FACING);
     }
 
-    // MenuProvider - nazwa GUI wyświetlana na ekranie
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (level != null && !level.isClientSide) {
+            level.setBlock(worldPosition, getBlockState().setValue(AlembicBlock.LIGHT_LEVEL, lightLevel), 3);
+        }
+    }
+
     @Override
     public @NotNull Component getDisplayName() {
         return new TextComponent("Alembic");
     }
 
-    // MenuProvider - metoda tworząca instancję menu
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory playerInventory, Player player) {
         return new AlembicMenu(id, playerInventory, this);
     }
 
-    // Getter dla ItemHandler
     public ItemStackHandler getItemHandler() {
         return itemHandler;
     }
-
 }

@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -30,6 +31,7 @@ import java.util.Random;
 
 public class AlembicBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
+    public static final IntegerProperty LIGHT_LEVEL = IntegerProperty.create("light_level", 0, 15); // Właściwość poziomu światła
 
     private static final VoxelShape SHAPE_NORTH = Shapes.or(
             Block.box(0, 0, 0, 16, 1, 16),
@@ -93,8 +95,13 @@ public class AlembicBlock extends Block implements EntityBlock {
     }
 
     @Override
+    public int getLightEmission(BlockState state, BlockGetter world, BlockPos pos) {
+        return state.getValue(LIGHT_LEVEL);
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING,LIGHT_LEVEL);
     }
 
     @Override
@@ -104,7 +111,7 @@ public class AlembicBlock extends Block implements EntityBlock {
 
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
-        world.scheduleTick(pos, this, 1);
+        world.scheduleTick(pos, this, 0);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof AlembicEntity) {
             ((AlembicEntity) blockEntity).tick();
@@ -120,7 +127,8 @@ public class AlembicBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+    @Nullable
+    public  BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new AlembicEntity(blockPos, blockState);
     }
 

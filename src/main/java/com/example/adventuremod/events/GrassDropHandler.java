@@ -27,7 +27,7 @@ public class GrassDropHandler {
         if(!event.getPlayer().isCreative()){
             if (state.getBlock() == Blocks.GRASS||state.getBlock() == Blocks.TALL_GRASS) {
                 if (!world.isClientSide) {
-                    ItemStack hop = new ItemStack(Hop_SEEDS.get());
+                    ItemStack hop = new ItemStack(HOP_SEEDS.get());
                     ItemStack grape = new ItemStack(GRAPE_SEEDS.get());
                     ItemStack barleySeeds = new ItemStack(BARLEY_SEEDS.get());
                     if (random.nextInt(10)==0)
