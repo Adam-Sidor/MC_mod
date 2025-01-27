@@ -8,6 +8,8 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.Objects;
+
 
 public class CustomSeedsItem extends Item {
 
@@ -27,6 +29,9 @@ public class CustomSeedsItem extends Item {
         if (state.is(bed)) {
             BlockState plantState = plant.defaultBlockState();
             context.getLevel().setBlock(pos.above(), plantState, 3);
+            if (!Objects.requireNonNull(context.getPlayer()).isCreative()) {
+                context.getItemInHand().shrink(1);
+            }
             return InteractionResult.SUCCESS;
         }
         return super.useOn(context);
