@@ -116,6 +116,38 @@ public class NewItems {
             )
     );
 
+    public static final RegistryObject<Item> BEER_PALE = ITEMS.register("beer_pale",
+            () -> new AlcoholItem(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(1)
+                            .saturationMod(0.3f)
+                            .alwaysEat()
+                            .build()
+                    )
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+                    .rarity(Rarity.UNCOMMON)
+                    ,1
+                    ,new ItemStack(MUG.get())
+            )
+    );
+
+    public static final RegistryObject<Item> BEER_PORTER = ITEMS.register("beer_porter",
+            () -> new AlcoholItem(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(1)
+                            .saturationMod(0.3f)
+                            .alwaysEat()
+                            .build()
+                    )
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+                    .rarity(Rarity.UNCOMMON)
+                    ,1
+                    ,new ItemStack(MUG.get())
+            )
+    );
+
     public static final RegistryObject<Item> HOP = ITEMS.register("hop",
             () -> new Item(new Item.Properties()
                     .tab(ALCOHOL_TAB)
@@ -407,6 +439,98 @@ public class NewItems {
                     .rarity(Rarity.EPIC)
                     ,1
                     ,new ItemStack(BOTTLE.get())
+            )
+    );
+
+    public static final RegistryObject<Item> WHITE_DRY = ITEMS.register("white_dry",
+            () -> new AlcoholItem(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(1)
+                            .saturationMod(0.3f)
+                            .alwaysEat()
+                            .build()
+                    )
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+                    .rarity(Rarity.EPIC)
+                    ,1
+                    ,new ItemStack(BOTTLE.get())
+            )
+    );
+
+    public static final RegistryObject<Item> RED_SWEET = ITEMS.register("red_sweet",
+            () -> new AlcoholItem(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(1)
+                            .saturationMod(0.3f)
+                            .alwaysEat()
+                            .build()
+                    )
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+                    .rarity(Rarity.EPIC)
+                    ,1
+                    ,new ItemStack(BOTTLE.get())
+            )
+    );
+
+    public static final RegistryObject<Item> RED_DRY = ITEMS.register("red_dry",
+            () -> new AlcoholItem(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(1)
+                            .saturationMod(0.3f)
+                            .alwaysEat()
+                            .build()
+                    )
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+                    .rarity(Rarity.EPIC)
+                    ,1
+                    ,new ItemStack(BOTTLE.get())
+            )
+    );
+
+    public static final RegistryObject<Item> ABSINTHE = ITEMS.register("absinthe",
+            () -> new AlcoholItem(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(1)
+                            .saturationMod(0.3f)
+                            .alwaysEat()
+                            .build()
+                    )
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+                    .rarity(Rarity.EPIC)
+                    ,1
+                    ,new ItemStack(BOTTLE.get())
+            )
+    );
+
+    public static final RegistryObject<Item> GIN = ITEMS.register("gin",
+            () -> new AlcoholItem(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(1)
+                            .saturationMod(0.3f)
+                            .alwaysEat()
+                            .build()
+                    )
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+                    .rarity(Rarity.EPIC)
+                    ,1
+                    ,new ItemStack(BOTTLE.get())
+            )
+    );
+
+    public static final RegistryObject<Item> BARLEY_ROASTED = ITEMS.register("barley_roasted",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+            )
+    );
+
+    public static final RegistryObject<Item> BARLEY_MALT = ITEMS.register("barley_malt",
+            () -> new Item(new Item.Properties()
+                    .tab(ALCOHOL_TAB)
             )
     );
 }
