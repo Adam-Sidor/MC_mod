@@ -23,6 +23,11 @@ public class NewBlocks {
             () -> new BarleyCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
 
+    public static final RegistryObject<Block> GRAPE_BLOCK = BLOCKS.register("grape_block", () -> new GrapeBlock());
+    public static final RegistryObject<Block> UPPER_GRAPE_BLOCK = BLOCKS.register("upper_grape_block", () -> new UpperGrapeBlock());
+
+
+
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);
     }

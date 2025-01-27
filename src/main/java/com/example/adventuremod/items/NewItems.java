@@ -2,12 +2,12 @@ package com.example.adventuremod.items;
 
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import static com.example.adventuremod.blocks.NewBlocks.ALEMBIC;
-import static com.example.adventuremod.blocks.NewBlocks.BARLEY_CROP;
+import static com.example.adventuremod.blocks.NewBlocks.*;
 
 public class NewItems {
 
@@ -212,8 +212,10 @@ public class NewItems {
     );
 
     public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds",
-            () -> new Item(new Item.Properties()
+            () -> new CustomSeedsItem(new Item.Properties()
                     .tab(ALCOHOL_TAB)
+                    ,GRAPE_BLOCK.get()
+                    , Blocks.GRASS_BLOCK
             )
     );
 

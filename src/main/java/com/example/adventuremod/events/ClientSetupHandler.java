@@ -20,5 +20,7 @@ public class ClientSetupHandler {
         MenuScreens.register(ModMenuTypes.ALEMBIC_MENU.get(), AlembicScreen::new);
         ItemBlockRenderTypes.setRenderLayer(BARLEY_CROP.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ALEMBIC.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(GRAPE_BLOCK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(UPPER_GRAPE_BLOCK.get(), RenderType.cutout());
     }
 }
