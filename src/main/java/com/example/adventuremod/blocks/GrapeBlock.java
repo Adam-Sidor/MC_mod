@@ -1,19 +1,19 @@
 package com.example.adventuremod.blocks;
 
+import com.example.adventuremod.items.NewItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -25,13 +25,13 @@ public class GrapeBlock extends Block {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;  // Fazy od 0 do 3
 
     public GrapeBlock() {
-        super(BlockBehaviour.Properties.of(Material.PLANT));
+        super(BlockBehaviour.Properties.copy(Blocks.WHEAT));
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));  // Domyślnie roślina zaczyna w fazie 0
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AGE);  // Rejestrujemy stan "AGE" w definicji bloku
+        builder.add(AGE);
     }
 
     @Override
@@ -63,25 +63,35 @@ public class GrapeBlock extends Block {
         if (!level.isClientSide) {
             int age = state.getValue(AGE);
 
-            // Losowy tick - roślina rośnie, jeśli nie osiągnęła fazy 3
+
             if (age < 3) {
                 level.setBlock(pos, state.setValue(AGE, age + 1), 2);
-                age = state.getValue(AGE);
+
+                if (age == 2) {
+                    BlockPos upperPos = pos.above();
+                    BlockState upperState = NewBlocks.UPPER_GRAPE_BLOCK.get().defaultBlockState();
+                    level.setBlock(upperPos, upperState, 3);
+                }
             }
 
-            // Jeśli roślina osiągnęła fazę 3, stawiamy górną część
-            if (age == 3) {
-                BlockPos upperPos = pos.above();  // Pozycja nad dolną rośliną
-                BlockState upperState = NewBlocks.UPPER_GRAPE_BLOCK.get().defaultBlockState();
-                level.setBlock(upperPos, upperState, 3);
-            }
         }
         super.randomTick(state, level, pos, p_60554_);
     }
 
     @Override
-    public boolean isCollisionShapeFullBlock(BlockState p_181242_, BlockGetter p_181243_, BlockPos p_181244_) {
-        return false;
-    }
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        super.playerWillDestroy(level, pos, state, player);
 
+        BlockPos upperPos = pos.above();
+        BlockState upperState = level.getBlockState(upperPos);
+        if (upperState.is(NewBlocks.UPPER_GRAPE_BLOCK.get())) {
+            level.destroyBlock(upperPos, false);
+
+            ItemStack seeds = new ItemStack(NewItems.GRAPE_SEEDS.get());
+            Random rand = new Random();
+            for (int i = 0; i < rand.nextInt(4); i++) {
+                level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), seeds));
+            }
+        }
+    }
 }

@@ -5,18 +5,18 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Random;
@@ -25,7 +25,7 @@ public class UpperGrapeBlock extends Block {
     public static final BooleanProperty HAS_FRUIT = BooleanProperty.create("has_fruit");
 
     public UpperGrapeBlock() {
-        super(BlockBehaviour.Properties.of(Material.PLANT));
+        super(BlockBehaviour.Properties.copy(Blocks.WHEAT));
         this.registerDefaultState(this.stateDefinition.any().setValue(HAS_FRUIT, false));
     }
 
@@ -89,8 +89,19 @@ public class UpperGrapeBlock extends Block {
     }
 
     @Override
-    public boolean isCollisionShapeFullBlock(BlockState p_181242_, BlockGetter p_181243_, BlockPos p_181244_) {
-        return false;
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        super.playerWillDestroy(level, pos, state, player);
+
+        BlockPos belowPos = pos.below();
+        BlockState belowState = level.getBlockState(belowPos);
+        if (belowState.is(NewBlocks.GRAPE_BLOCK.get())) {
+            level.destroyBlock(belowPos, false);
+            ItemStack seeds = new ItemStack(NewItems.GRAPE_SEEDS.get());
+            Random rand = new Random();
+            for (int i = 0; i < rand.nextInt(4); i++) {
+                level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), seeds));
+            }
+        }
     }
 
 }
