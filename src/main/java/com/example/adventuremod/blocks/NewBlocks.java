@@ -3,6 +3,7 @@ package com.example.adventuremod.blocks;
 import com.example.adventuremod.AdventureMod;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,6 +18,10 @@ public class NewBlocks {
     public static final RegistryObject<Block> ALEMBIC = BLOCKS.register("alembic",
             () -> new AlembicBlock(BlockBehaviour.Properties.of(Material.METAL))
     );
+
+    public static final RegistryObject<Block> BARLEY_CROP = BLOCKS.register("barley_crop",
+            () -> new BarleyCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);

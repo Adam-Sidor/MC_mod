@@ -1,11 +1,12 @@
 {
-  "item.adventuremod.bottle": "Bootle",
+  "item.adventuremod.bottle": "Bottle",
   "item.adventuremod.jager": "Jager",
   "item.adventuremod.mug": "Mug",
   "item.adventuremod.beer": "Beer",
   "item.adventuremod.vodka": "Vodka",
   "item.adventuremod.hop": "Hop",
   "item.adventuremod.barley": "Barley",
+  "item.adventuremod.barley_seeds": "Barley Seeds",
   "item.adventuremod.cider": "Cider",
   "item.adventuremod.grape": "Grape",
   "item.adventuremod.rum": "Rum",
@@ -14,6 +15,11 @@
   "item.adventuremod.vine": "Vine",
   "item.adventuremod.whiskey": "Whiskey",
   "item.adventuremod.tequila": "Tequila",
+  "item.adventuremod.copper_can": "Copper Can",
+  "item.adventuremod.copper_pipe": "Copper Pipe",
+  "item.adventuremod.copper_radiator": "Copper Radiator",
+  "item.adventuremod.copper_spiral": "Copper Spiral",
   "itemGroup.alcohol_tab": "Alcohols",
-  "block.adventuremod.alembic" : "Alembic"
+  "block.adventuremod.alembic" : "Alembic",
+  "block.adventuremod.barley_crop" : "Barley Crop"
 }

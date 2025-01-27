@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "adventuremod:block/barley_crop_stage4"
+  }
+}

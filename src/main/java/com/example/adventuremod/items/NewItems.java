@@ -7,6 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.example.adventuremod.blocks.NewBlocks.ALEMBIC;
+import static com.example.adventuremod.blocks.NewBlocks.BARLEY_CROP;
 
 public class NewItems {
 
@@ -140,6 +141,12 @@ public class NewItems {
     public static final RegistryObject<Item> BARLEY = ITEMS.register("barley",
             () -> new Item(new Item.Properties()
                     .tab(ALCOHOL_TAB)
+            )
+    );
+    public static final RegistryObject<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds",
+            () -> new ItemNameBlockItem(BARLEY_CROP.get(),
+                    new Item.Properties()
+                            .tab(ALCOHOL_TAB)
             )
     );
 

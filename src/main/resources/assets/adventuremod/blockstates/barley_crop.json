@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "age=0": { "model": "adventuremod:block/barley_crop_stage0" },
+    "age=1": { "model": "adventuremod:block/barley_crop_stage1" },
+    "age=2": { "model": "adventuremod:block/barley_crop_stage2" },
+    "age=3": { "model": "adventuremod:block/barley_crop_stage3" },
+    "age=4": { "model": "adventuremod:block/barley_crop_stage4" },
+    "age=5": { "model": "adventuremod:block/barley_crop_stage5" },
+    "age=6": { "model": "adventuremod:block/barley_crop_stage6" },
+    "age=7": { "model": "adventuremod:block/barley_crop_stage7" }
+  }
+}

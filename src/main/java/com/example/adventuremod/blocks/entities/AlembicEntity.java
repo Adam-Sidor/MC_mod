@@ -187,12 +187,12 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
                 serverLevel.sendParticles(
                         ParticleTypes.FLAME,  // Typ cząsteczki
                         x,
-                        y,
+                        y+0.1,
                         z,
-                        2,             // Liczba cząsteczek
-                        0.01,                  // Offset X
-                        0.01,                  // Offset Y
-                        0.01,                  // Offset Z
+                        1,             // Liczba cząsteczek
+                        0.001,                  // Offset X
+                        0.001,                  // Offset Y
+                        0.001,                  // Offset Z
                         0.01                  // Prędkość
                 );
             }
