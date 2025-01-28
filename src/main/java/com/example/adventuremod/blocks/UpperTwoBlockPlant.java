@@ -64,7 +64,7 @@ public abstract class UpperTwoBlockPlant extends Block {
                 }
                 else{
                     level.setBlock(pos, state.setValue(HAS_FRUIT, false), 3);
-                    player.getInventory().add(fruit());
+                    level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), fruit()));
                 }
             }
 
@@ -74,7 +74,9 @@ public abstract class UpperTwoBlockPlant extends Block {
                 boolean hasFruit = state.getValue(HAS_FRUIT);
                 if (hasFruit) {
                     level.setBlock(pos, state.setValue(HAS_FRUIT, false), 3);
-                    player.getInventory().add(fruit());
+                    level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), fruit()));
+                    if(player.getItemInHand(hand).getItem() == Items.SHEARS)
+                        level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), fruit()));
                 }
             }
 
