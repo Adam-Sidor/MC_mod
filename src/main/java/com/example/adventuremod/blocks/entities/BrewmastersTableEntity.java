@@ -1,14 +1,13 @@
 package com.example.adventuremod.blocks.entities;
 
+import com.example.adventuremod.blocks.AlembicBlock;
 import com.example.adventuremod.blocks.BrewmastersTable;
 import com.example.adventuremod.menus.BrewmastersTableMenu;
 import com.example.adventuremod.recipes.BrewmastersTableRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -20,22 +19,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
+import static com.example.adventuremod.blocks.BrewmastersTable.HAS_WATER;
+
 public class BrewmastersTableEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
     private int waterLevel;
     private boolean canProduce;
     private int timeLeft;
     private ItemStack waitingItem;
     private final ItemStackHandler itemHandler = new ItemStackHandler(5);
-    private Direction facing;
-    private final BlockPos pos;
 
     public BrewmastersTableEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BREWMASTERS_TABLE_ENTITY.get(), pos, state);
         this.waterLevel = 0;
         this.canProduce = true;
         this.timeLeft = 40;
-        this.pos = pos;
-        this.facing = getFacing();
     }
 
     public ContainerData getData() {
@@ -76,7 +73,6 @@ public class BrewmastersTableEntity extends BlockEntity implements net.minecraft
         ItemStack input1 = itemHandler.getStackInSlot(1);
         ItemStack input2 = itemHandler.getStackInSlot(2);
         ItemStack input3 = itemHandler.getStackInSlot(3);
-
         if ((!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty()) && waterLevel > 0) {
             ItemStack result = BrewmastersTableRecipes.getResult(input1, input2, input3, itemHandler.getStackInSlot(4));
             boolean returnBucket=false;
@@ -120,6 +116,10 @@ public class BrewmastersTableEntity extends BlockEntity implements net.minecraft
             waterSlot.shrink(1);
             itemHandler.setStackInSlot(0, new ItemStack(Items.BUCKET));
         }
+        if(waterLevel>0)
+            level.setBlock(worldPosition, getBlockState().setValue(HAS_WATER, true), 3);
+        else
+            level.setBlock(worldPosition, getBlockState().setValue(HAS_WATER, false), 3);
     }
 
     public Direction getFacing() {
