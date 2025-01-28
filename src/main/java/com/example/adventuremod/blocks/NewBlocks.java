@@ -26,7 +26,8 @@ public class NewBlocks {
     public static final RegistryObject<Block> GRAPE_BLOCK = BLOCKS.register("grape_block", () -> new GrapeBlock());
     public static final RegistryObject<Block> UPPER_GRAPE_BLOCK = BLOCKS.register("upper_grape_block", () -> new UpperGrapeBlock());
 
-
+    public static final RegistryObject<Block> HOP_BLOCK = BLOCKS.register("hop_block", () -> new HopBlock());
+    public static final RegistryObject<Block> UPPER_HOP_BLOCK = BLOCKS.register("upper_hop_block", () -> new UpperHopBlock());
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);

@@ -84,15 +84,17 @@ public abstract class TwoBlockPlant extends Block {
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         super.playerWillDestroy(level, pos, state, player);
-
+        Random rand = new Random();
+        int seedsCount = 1;
+        if(state.getValue(AGE)==3)
+            seedsCount = rand.nextInt(4);
+        for (int i = 0; i < seedsCount; i++) {
+            level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), seeds()));
+        }
         BlockPos upperPos = pos.above();
         BlockState upperState = level.getBlockState(upperPos);
         if (upperState.is(upperBlock())) {
             level.destroyBlock(upperPos, false);
-            Random rand = new Random();
-            for (int i = 0; i < rand.nextInt(4); i++) {
-                level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), seeds()));
-            }
         }
     }
 }

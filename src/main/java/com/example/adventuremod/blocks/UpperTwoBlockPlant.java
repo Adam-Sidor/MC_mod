@@ -62,13 +62,16 @@ public abstract class UpperTwoBlockPlant extends Block {
                         player.getItemInHand(hand).shrink(1);
                     }
                 }
+                else{
+                    level.setBlock(pos, state.setValue(HAS_FRUIT, false), 3);
+                    player.getInventory().add(fruit());
+                }
             }
 
             return InteractionResult.SUCCESS;
         }else{
             if (!level.isClientSide) {
                 boolean hasFruit = state.getValue(HAS_FRUIT);
-
                 if (hasFruit) {
                     level.setBlock(pos, state.setValue(HAS_FRUIT, false), 3);
                     player.getInventory().add(fruit());

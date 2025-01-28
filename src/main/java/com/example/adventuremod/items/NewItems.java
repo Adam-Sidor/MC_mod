@@ -155,8 +155,10 @@ public class NewItems {
     );
 
     public static final RegistryObject<Item> HOP_SEEDS = ITEMS.register("hop_seeds",
-            () -> new Item(new Item.Properties()
+            () -> new CustomSeedsItem(new Item.Properties()
                     .tab(ALCOHOL_TAB)
+                    , HOP_BLOCK.get()
+                    , Blocks.GRASS_BLOCK
             )
     );
 
@@ -214,7 +216,7 @@ public class NewItems {
     public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds",
             () -> new CustomSeedsItem(new Item.Properties()
                     .tab(ALCOHOL_TAB)
-                    ,GRAPE_BLOCK.get()
+                    , GRAPE_BLOCK.get()
                     , Blocks.GRASS_BLOCK
             )
     );

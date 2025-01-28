@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "has_fruit=false": { "model": "adventuremod:block/upper_hop_no_fruit" },
+    "has_fruit=true": { "model": "adventuremod:block/upper_hop_with_fruit" }
+  }
+}
