@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WMB",
+    "PPP",
+    "S S"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:bucket"
+    },
+    "M": {
+      "item": "adventuremod:mug"
+    },
+    "B": {
+      "item": "adventuremod:bottle"
+    },
+    "P": {
+      "item": "minecraft:oak_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "adventuremod:brewmasters_table_item",
+    "count": 1
+  }
+}

@@ -14,6 +14,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -34,7 +35,7 @@ public class BrewmastersTable extends Block implements EntityBlock, BrewmastersT
     public static final BooleanProperty HAS_WATER = BooleanProperty.create("has_water");
 
     public BrewmastersTable(Properties properties) {
-        super(properties.strength(5.0F, 10.0F));
+        super(properties.strength(2.0F, 3.0F).sound(SoundType.WOOD));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
         this.registerDefaultState(this.stateDefinition.any().setValue(HAS_WATER, false));
     }
