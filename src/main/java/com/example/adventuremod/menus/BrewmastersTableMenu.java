@@ -11,22 +11,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.items.SlotItemHandler;
 
-import static com.example.adventuremod.items.NewItems.BOTTLE;
-import static com.example.adventuremod.items.NewItems.MUG;
+import static com.example.adventuremod.items.NewItems.*;
 
 public class BrewmastersTableMenu extends AbstractContainerMenu {
     private final BrewmastersTableEntity blockEntity;
     private final ContainerData data;
     public int waterLevel;
-    public int fuelLevel;
     public int timeLeft;
     public BrewmastersTableMenu(int id, Inventory playerInventory, BrewmastersTableEntity blockEntity) {
         super(ModMenuTypes.BREWMASTERS_TABLE_MENU.get(), id);
         this.blockEntity = blockEntity;
         this.data = blockEntity.getData();
         this.waterLevel = data.get(0);
-        this.fuelLevel = data.get(1);
-        this.timeLeft = data.get(2);
+        this.timeLeft = data.get(1);
 
         // Dodanie slotów bloku
         addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 0, 20, 17) {
@@ -39,7 +36,7 @@ public class BrewmastersTableMenu extends AbstractContainerMenu {
         addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 56, 17) {
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.getItem() == BOTTLE.get() || stack.getItem() == MUG.get();
+                return stack.getItem() == SPIRIT.get() || stack.getItem() == BEER.get()|| stack.getItem() == WHISKEY.get()|| stack.getItem() == VINE.get();
             }
         });
 
@@ -84,17 +81,6 @@ public class BrewmastersTableMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int value) {
-                fuelLevel = value;
-            }
-        });
-        addDataSlot(new DataSlot() {
-            @Override
-            public int get() {
-                return data.get(2);
-            }
-
-            @Override
-            public void set(int value) {
                 timeLeft = value;
             }
         });
@@ -110,7 +96,7 @@ public class BrewmastersTableMenu extends AbstractContainerMenu {
             itemstack = stackInSlot.copy();
 
             // Zakresy slotów
-            int containerSlots = blockEntity.getItemHandler().getSlots(); // Sloty bloku
+            int containerSlots = blockEntity.getItemHandler().getSlots();
             int playerInventoryStart = containerSlots;
             int playerHotbarStart = playerInventoryStart + 27;
             int playerInventoryEnd = playerHotbarStart + 9;

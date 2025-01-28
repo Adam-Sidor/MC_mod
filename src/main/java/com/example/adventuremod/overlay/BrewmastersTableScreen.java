@@ -26,28 +26,21 @@ public class BrewmastersTableScreen extends AbstractContainerScreen<BrewmastersT
 
     private void renderWaterLevel(PoseStack poseStack) {
         int waterLevel = menu.waterLevel;
-        int fuelLevel = menu.fuelLevel;
         int timeLeft = menu.timeLeft;
         final int maxWaterLevel = 4;
-        final int maxFuelLevel = 8;
         final int maxTimeLeft = 40;
 
         int waterHeight = (int) ((waterLevel / (float) maxWaterLevel) * 32);
-        int fuelHeight = (int) ((fuelLevel / (float) maxFuelLevel) * 14);
         int timeLeftWidth = (int) ((timeLeft / (float) maxTimeLeft) * 24);//h=17
 
         // Pozycja wskaźnika na GUI
         int waterX = leftPos + 20;
         int waterY = topPos + 37 + (32 - waterHeight);
 
-        int fuelX = leftPos + 56;
-        int fuelY = topPos + 36 + (14 - fuelHeight);
-
         int timeLeftX = leftPos + 115;
         int timeLeftY = topPos + 35;
 
         blit(poseStack, waterX, waterY, 176, 31, 16, waterHeight); // Tekstura wskaźnika zaczyna się od (176, 0) i ma szerokość 16 px
-        blit(poseStack, fuelX, fuelY, 176, 14-fuelHeight, 14, fuelHeight);
         blit(poseStack, timeLeftX, timeLeftY, 176, 14, 24-timeLeftWidth, 17);
     }
 

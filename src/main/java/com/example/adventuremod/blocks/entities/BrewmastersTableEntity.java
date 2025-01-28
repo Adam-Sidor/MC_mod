@@ -2,7 +2,7 @@ package com.example.adventuremod.blocks.entities;
 
 import com.example.adventuremod.blocks.BrewmastersTable;
 import com.example.adventuremod.menus.BrewmastersTableMenu;
-import com.example.adventuremod.recipes.AlembicRecipes;
+import com.example.adventuremod.recipes.BrewmastersTableRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -22,7 +22,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class BrewmastersTableEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
     private int waterLevel;
-    private int fuelLevel;
     private boolean canProduce;
     private int timeLeft;
     private ItemStack waitingItem;
@@ -33,7 +32,6 @@ public class BrewmastersTableEntity extends BlockEntity implements net.minecraft
     public BrewmastersTableEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BREWMASTERS_TABLE_ENTITY.get(), pos, state);
         this.waterLevel = 0;
-        this.fuelLevel = 0;
         this.canProduce = true;
         this.timeLeft = 40;
         this.pos = pos;
@@ -46,8 +44,7 @@ public class BrewmastersTableEntity extends BlockEntity implements net.minecraft
             public int get(int index) {
                 return switch (index) {
                     case 0 -> waterLevel;
-                    case 1 -> fuelLevel;
-                    case 2 -> timeLeft;
+                    case 1 -> timeLeft;
                     default -> 0;
                 };
             }
@@ -56,8 +53,7 @@ public class BrewmastersTableEntity extends BlockEntity implements net.minecraft
             public void set(int index, int value) {
                 switch (index) {
                     case 0 -> waterLevel = value;
-                    case 1 -> fuelLevel = value;
-                    case 2 -> timeLeft = value;
+                    case 1 -> timeLeft = value;
                 }
             }
 
@@ -82,15 +78,18 @@ public class BrewmastersTableEntity extends BlockEntity implements net.minecraft
         ItemStack input3 = itemHandler.getStackInSlot(3);
 
         if ((!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty()) && waterLevel > 0) {
-            ItemStack result = AlembicRecipes.getResult(input1, input2, input3, itemHandler.getStackInSlot(5));
+            ItemStack result = BrewmastersTableRecipes.getResult(input1, input2, input3, itemHandler.getStackInSlot(4));
+            boolean returnBucket=false;
             if (!result.isEmpty()) {
-                if (fuelLevel > 0) {
-                    input1.shrink(1);
-                    input2.shrink(1);
-                    input3.shrink(1);
-                    waterLevel--;
-                    setVariablesToWait(result);
-                }
+                if(input2.getItem() == Items.WATER_BUCKET||input3.getItem() == Items.WATER_BUCKET)
+                    returnBucket=true;
+                input1.shrink(1);
+                input2.shrink(1);
+                input3.shrink(1);
+                if(returnBucket)
+                    itemHandler.setStackInSlot(2, new ItemStack(Items.BUCKET));
+                waterLevel--;
+                setVariablesToWait(result);
             }
         }
     }

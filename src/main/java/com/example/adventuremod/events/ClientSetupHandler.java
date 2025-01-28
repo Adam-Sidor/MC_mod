@@ -19,7 +19,9 @@ public class ClientSetupHandler {
     public static void onClientSetup(FMLClientSetupEvent event) {
         System.out.println("Registering AlembicScreen");
         MenuScreens.register(ModMenuTypes.ALEMBIC_MENU.get(), AlembicScreen::new);
+
         MenuScreens.register(ModMenuTypes.BREWMASTERS_TABLE_MENU.get(), BrewmastersTableScreen::new);
+        ItemBlockRenderTypes.setRenderLayer(BREWMASTERS_TABLE.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(BARLEY_CROP.get(), RenderType.cutout());
 
