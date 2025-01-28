@@ -29,7 +29,7 @@ public abstract class UpperTwoBlockPlant extends Block {
     public abstract ItemStack fruit();
 
     public UpperTwoBlockPlant() {
-        super(BlockBehaviour.Properties.copy(Blocks.WHEAT));
+        super(BlockBehaviour.Properties.copy(Blocks.WHEAT).randomTicks());
         this.registerDefaultState(this.stateDefinition.any().setValue(HAS_FRUIT, false));
     }
 

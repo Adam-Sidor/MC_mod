@@ -19,4 +19,5 @@ public class HopBlock extends TwoBlockPlant {
     protected ItemStack seeds() {
         return new ItemStack(NewItems.HOP_SEEDS.get());
     }
+
 }

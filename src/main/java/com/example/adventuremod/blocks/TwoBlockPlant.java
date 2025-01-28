@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -35,6 +36,12 @@ public abstract class TwoBlockPlant extends Block {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE);
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        BlockState belowState = world.getBlockState(pos.below());
+        return belowState.is(Blocks.GRASS_BLOCK);
     }
 
     @Override

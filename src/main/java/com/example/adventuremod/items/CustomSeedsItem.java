@@ -1,6 +1,7 @@
 package com.example.adventuremod.items;
 
 
+import com.example.adventuremod.blocks.NewBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
@@ -29,6 +30,10 @@ public class CustomSeedsItem extends Item {
         if (state.is(bed)) {
             BlockState plantState = plant.defaultBlockState();
             context.getLevel().setBlock(pos.above(), plantState, 3);
+            if(plant == NewBlocks.HOP_BLOCK.get()){
+                BlockState upperPlantState = NewBlocks.UPPER_HOP_BLOCK.get().defaultBlockState();
+                context.getLevel().setBlock(pos.above().above(), upperPlantState, 3);
+            }
             if (!Objects.requireNonNull(context.getPlayer()).isCreative()) {
                 context.getItemInHand().shrink(1);
             }
