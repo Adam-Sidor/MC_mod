@@ -40,13 +40,13 @@ public class AlembicScreen extends AbstractContainerScreen<AlembicMenu> {
         int waterX = leftPos + 20;
         int waterY = topPos + 37 + (32 - waterHeight);
 
-        int fuelX = leftPos + 56;
+        int fuelX = leftPos + 57;
         int fuelY = topPos + 36 + (14 - fuelHeight);
 
         int timeLeftX = leftPos + 115;
         int timeLeftY = topPos + 35;
 
-        blit(poseStack, waterX, waterY, 176, 31, 16, waterHeight); // Tekstura wskaźnika zaczyna się od (176, 0) i ma szerokość 16 px
+        blit(poseStack, waterX, waterY, 176, 63-waterHeight, 16, waterHeight); // Tekstura wskaźnika zaczyna się od (176, 0) i ma szerokość 16 px
         blit(poseStack, fuelX, fuelY, 176, 14-fuelHeight, 14, fuelHeight);
         blit(poseStack, timeLeftX, timeLeftY, 176, 14, 24-timeLeftWidth, 17);
     }
