@@ -77,9 +77,10 @@ public abstract class UpperTwoBlockPlant extends Block {
                     level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), fruit()));
                     if(player.getItemInHand(hand).getItem() == Items.SHEARS)
                         level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), fruit()));
+                }else{
+                    return InteractionResult.PASS;
                 }
             }
-
             return InteractionResult.SUCCESS;
         }
     }

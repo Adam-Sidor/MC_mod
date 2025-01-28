@@ -54,7 +54,7 @@ public class UpperHopBlock extends UpperTwoBlockPlant {
 
     @Override
     public void tick(BlockState state, ServerLevel serverLevel, BlockPos pos, Random random) {
-        serverLevel.scheduleTick(pos, this, 1);
+        serverLevel.scheduleTick(pos, this, 5);
         BlockState belowState = serverLevel.getBlockState(pos.below());
         if (belowState.is(lowerBlock())) {
             int age = belowState.getValue(TwoBlockPlant.AGE);
@@ -78,7 +78,12 @@ public class UpperHopBlock extends UpperTwoBlockPlant {
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random p_60554_) {
         if(state.getValue(IS_GROWN)) {
-            super.randomTick(state, level, pos, p_60554_);
+            if (!level.isClientSide) {
+                boolean hasFruit = state.getValue(HAS_FRUIT);
+                if (!hasFruit) {
+                    level.setBlock(pos, state.setValue(HAS_FRUIT, true), 3);
+                }
+            }
         }
     }
 
