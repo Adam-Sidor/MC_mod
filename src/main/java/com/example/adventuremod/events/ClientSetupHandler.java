@@ -2,6 +2,7 @@ package com.example.adventuremod.events;
 import com.example.adventuremod.AdventureMod;
 import com.example.adventuremod.overlay.AlembicScreen;
 import com.example.adventuremod.menus.ModMenuTypes;
+import com.example.adventuremod.overlay.BrewmastersTableScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -18,6 +19,9 @@ public class ClientSetupHandler {
     public static void onClientSetup(FMLClientSetupEvent event) {
         System.out.println("Registering AlembicScreen");
         MenuScreens.register(ModMenuTypes.ALEMBIC_MENU.get(), AlembicScreen::new);
+
+        MenuScreens.register(ModMenuTypes.BREWMASTERS_TABLE_MENU.get(), BrewmastersTableScreen::new);
+        ItemBlockRenderTypes.setRenderLayer(BREWMASTERS_TABLE.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(BARLEY_CROP.get(), RenderType.cutout());
 

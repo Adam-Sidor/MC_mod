@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "adventuremod:block/copper_16",
+    "down": "adventuremod:block/copper_16",
+    "up": "adventuremod:block/copper_16",
+    "north": "adventuremod:block/copper_16",
+    "south": "adventuremod:block/copper_16",
+    "west": "adventuremod:block/copper_16",
+    "east": "adventuremod:block/copper_16"
+  }
+}

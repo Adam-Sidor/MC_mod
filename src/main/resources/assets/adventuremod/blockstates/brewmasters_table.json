@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=east,has_water=true": { "model": "adventuremod:block/brewmasters_table_with_water" , "y": 90},
+    "facing=south,has_water=true": { "model": "adventuremod:block/brewmasters_table_with_water" , "y": 180},
+    "facing=west,has_water=true": { "model": "adventuremod:block/brewmasters_table_with_water" , "y": 270},
+    "facing=north,has_water=true": { "model": "adventuremod:block/brewmasters_table_with_water" },
+    "facing=east,has_water=false": { "model": "adventuremod:block/brewmasters_table_no_water" , "y": 90},
+    "facing=south,has_water=false": { "model": "adventuremod:block/brewmasters_table_no_water" , "y": 180},
+    "facing=west,has_water=false": { "model": "adventuremod:block/brewmasters_table_no_water" , "y": 270},
+    "facing=north,has_water=false": { "model": "adventuremod:block/brewmasters_table_no_water" }
+  }
+}
