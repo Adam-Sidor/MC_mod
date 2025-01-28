@@ -103,9 +103,11 @@ public abstract class UpperTwoBlockPlant extends Block {
         BlockState belowState = level.getBlockState(belowPos);
         if (belowState.is(lowerBlock())) {
             level.destroyBlock(belowPos, false);
-            Random rand = new Random();
-            for (int i = 0; i < rand.nextInt(4); i++) {
-                level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), seeds()));
+            if(!player.isCreative()){
+                Random rand = new Random();
+                for (int i = 0; i < rand.nextInt(4); i++) {
+                    level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), seeds()));
+                }
             }
         }
     }

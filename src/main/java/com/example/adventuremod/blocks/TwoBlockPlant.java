@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
+import org.lwjgl.system.CallbackI;
 
 import java.util.Random;
 
@@ -29,7 +30,7 @@ public abstract class TwoBlockPlant extends Block {
     protected abstract ItemStack seeds();
 
     public TwoBlockPlant() {
-        super(BlockBehaviour.Properties.copy(Blocks.WHEAT));
+        super(BlockBehaviour.Properties.copy(Blocks.WHEAT).randomTicks());
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 
@@ -91,17 +92,37 @@ public abstract class TwoBlockPlant extends Block {
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         super.playerWillDestroy(level, pos, state, player);
-        Random rand = new Random();
-        int seedsCount = 1;
-        if(state.getValue(AGE)==3)
-            seedsCount = rand.nextInt(4);
-        for (int i = 0; i < seedsCount; i++) {
-            level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), seeds()));
+        if(player!=null){
+            if(!player.isCreative()) {
+                Random rand = new Random();
+                int seedsCount = 1;
+                if(state.getValue(AGE)==3)
+                    seedsCount = rand.nextInt(4);
+                for (int i = 0; i < seedsCount; i++) {
+                    level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), seeds()));
+                }
+            }
         }
         BlockPos upperPos = pos.above();
         BlockState upperState = level.getBlockState(upperPos);
         if (upperState.is(upperBlock())) {
             level.destroyBlock(upperPos, false);
         }
+    }
+
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
+        super.onPlace(state, level, pos, oldState, isMoving);
+        level.scheduleTick(pos, this, 1);
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+        level.scheduleTick(pos, this, 5);
+        if(!level.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK)) {
+            playerWillDestroy(level,pos,state,null);
+            level.destroyBlock(pos, false);
+        }
+        super.tick(state, level, pos, random);
     }
 }

@@ -81,4 +81,13 @@ public class UpperHopBlock extends UpperTwoBlockPlant {
             super.randomTick(state, level, pos, p_60554_);
         }
     }
+
+    @Override
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        if (state.getValue(IS_GROWN)) {
+            super.playerWillDestroy(level, pos, state, player);
+        }else if (level.getBlockState(pos.below()).is(lowerBlock())) {
+            level.destroyBlock(pos.below(), false);
+        }
+    }
 }
