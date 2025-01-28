@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -28,6 +29,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
+import net.minecraft.sounds.SoundEvents;
 
 import java.util.List;
 import java.util.Random;
@@ -127,6 +129,11 @@ public class AlembicBlock extends Block implements EntityBlock {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof AlembicEntity) {
             ((AlembicEntity) blockEntity).tick();
+        }
+        if(state.getValue(LIGHT_LEVEL)>0){
+            if (!world.isClientSide) {
+                world.playSound(null, pos, SoundEvents.SMOKER_SMOKE, SoundSource.BLOCKS, 0.3F, 0.3F);
+            }
         }
     }
 

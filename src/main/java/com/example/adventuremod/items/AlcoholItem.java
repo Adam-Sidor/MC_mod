@@ -28,7 +28,6 @@ public class AlcoholItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
 
-        // Rozpoczęcie animacji picia
         player.startUsingItem(hand);
 
         return InteractionResultHolder.consume(itemStack);
@@ -45,7 +44,6 @@ public class AlcoholItem extends Item {
                                 ChatType.GAME_INFO,
                                 serverPlayer.getUUID()
                         );
-                        System.out.println("Twój poziom alkoholu wzrósł do: " + alcohol.getAlcoholLevel());
                     } else {
                         serverPlayer.kill();
                     }
