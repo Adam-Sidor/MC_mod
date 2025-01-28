@@ -36,14 +36,14 @@ public class AlembicMenu extends AbstractContainerMenu {
             }
         });
 
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 56, 53) {
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 57, 53) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL;
             }
         });
 
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 2, 56, 17) {
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 2, 57, 17) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.getItem() == BOTTLE.get() || stack.getItem() == MUG.get();
