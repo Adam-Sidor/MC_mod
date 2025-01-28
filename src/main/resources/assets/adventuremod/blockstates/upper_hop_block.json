@@ -1,6 +1,6 @@
 {
   "variants": {
-    "is_grown=false": {"model": "adventuremod:block/upper_grape_no_fruit"},
+    "is_grown=false": {"model": "adventuremod:block/upper_hop_stick"},
     "has_fruit=false,is_grown=true": { "model": "adventuremod:block/upper_hop_no_fruit" },
     "has_fruit=true,is_grown=true": { "model": "adventuremod:block/upper_hop_with_fruit" }
   }
