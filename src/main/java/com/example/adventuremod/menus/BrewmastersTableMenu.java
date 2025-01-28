@@ -33,17 +33,12 @@ public class BrewmastersTableMenu extends AbstractContainerMenu {
             }
         });
 
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 56, 17) {
-            @Override
-            public boolean mayPlace(ItemStack stack) {
-                return stack.getItem() == SPIRIT.get() || stack.getItem() == BEER.get()|| stack.getItem() == WHISKEY.get()|| stack.getItem() == VINE.get();
-            }
-        });
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 1, 58, 27));
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 2, 58, 45));
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 3, 76, 27));
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 4, 76, 45));
 
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 2, 96, 25)); // Slot 3
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 3, 96, 43)); // Slot 4
-
-        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 4, 146, 35) { // Slot 5
+        addSlot(new SlotItemHandler(blockEntity.getItemHandler(), 5, 136, 36) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;

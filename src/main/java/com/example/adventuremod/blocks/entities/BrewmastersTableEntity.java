@@ -26,7 +26,7 @@ public class BrewmastersTableEntity extends BlockEntity implements net.minecraft
     private boolean canProduce;
     private int timeLeft;
     private ItemStack waitingItem;
-    private final ItemStackHandler itemHandler = new ItemStackHandler(5);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(6);
 
     public BrewmastersTableEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BREWMASTERS_TABLE_ENTITY.get(), pos, state);
@@ -73,17 +73,26 @@ public class BrewmastersTableEntity extends BlockEntity implements net.minecraft
         ItemStack input1 = itemHandler.getStackInSlot(1);
         ItemStack input2 = itemHandler.getStackInSlot(2);
         ItemStack input3 = itemHandler.getStackInSlot(3);
-        if ((!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty()) && waterLevel > 0) {
-            ItemStack result = BrewmastersTableRecipes.getResult(input1, input2, input3, itemHandler.getStackInSlot(4));
+        ItemStack input4 = itemHandler.getStackInSlot(4);
+        if ((!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty() || !input4.isEmpty()) && waterLevel > 0) {
+            ItemStack result = BrewmastersTableRecipes.getResult(input1, input2, input3,input4, itemHandler.getStackInSlot(5));
             boolean returnBucket=false;
             if (!result.isEmpty()) {
-                if(input2.getItem() == Items.WATER_BUCKET||input3.getItem() == Items.WATER_BUCKET)
+                if(input1.getItem() == Items.WATER_BUCKET||input2.getItem() == Items.WATER_BUCKET||input3.getItem() == Items.WATER_BUCKET||input4.getItem() == Items.WATER_BUCKET)
                     returnBucket=true;
                 input1.shrink(1);
                 input2.shrink(1);
                 input3.shrink(1);
+                input4.shrink(1);
                 if(returnBucket)
-                    itemHandler.setStackInSlot(2, new ItemStack(Items.BUCKET));
+                    if(input1.isEmpty())
+                        itemHandler.setStackInSlot(1, new ItemStack(Items.BUCKET));
+                    else if(input2.isEmpty())
+                        itemHandler.setStackInSlot(2, new ItemStack(Items.BUCKET));
+                    else if(input3.isEmpty())
+                        itemHandler.setStackInSlot(3, new ItemStack(Items.BUCKET));
+                    else if(input4.isEmpty())
+                        itemHandler.setStackInSlot(4, new ItemStack(Items.BUCKET));
                 waterLevel--;
                 setVariablesToWait(result);
             }
@@ -97,9 +106,9 @@ public class BrewmastersTableEntity extends BlockEntity implements net.minecraft
         if (timeLeft <= 0) {
             canProduce = true;
             timeLeft = 40;
-            ItemStack currentOutput = itemHandler.getStackInSlot(4);
+            ItemStack currentOutput = itemHandler.getStackInSlot(5);
             ItemStack output = new ItemStack(waitingItem.getItem(), currentOutput.getCount() + waitingItem.getCount());
-            itemHandler.setStackInSlot(4, output);
+            itemHandler.setStackInSlot(5, output);
         }
     }
 

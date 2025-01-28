@@ -37,8 +37,8 @@ public class BrewmastersTableScreen extends AbstractContainerScreen<BrewmastersT
         int waterX = leftPos + 20;
         int waterY = topPos + 37 + (32 - waterHeight);
 
-        int timeLeftX = leftPos + 115;
-        int timeLeftY = topPos + 35;
+        int timeLeftX = leftPos + 100;
+        int timeLeftY = topPos + 36;
 
         blit(poseStack, waterX, waterY, 176, 31, 16, waterHeight); // Tekstura wskaźnika zaczyna się od (176, 0) i ma szerokość 16 px
         blit(poseStack, timeLeftX, timeLeftY, 176, 14, 24-timeLeftWidth, 17);
