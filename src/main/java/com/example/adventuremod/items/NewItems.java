@@ -23,7 +23,14 @@ public class NewItems {
     public static final RegistryObject<Item> ALEMBIC_ITEM = ITEMS.register("alembic_item",
             () -> new BlockItem(ALEMBIC.get(), new Item.Properties()
                     .tab(ALCOHOL_TAB)
-                    .stacksTo(1)
+                    .stacksTo(4)
+            )
+    );
+
+    public static final RegistryObject<Item> BREWMASTERS_TABLE_ITEM = ITEMS.register("brewmasters_table_item",
+            () -> new BlockItem(BREWMASTERS_TABLE.get(), new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
             )
     );
 

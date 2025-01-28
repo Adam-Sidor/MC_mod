@@ -10,13 +10,15 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-import static com.example.adventuremod.blocks.entities.ModBlockEntities.BLOCK_ENTITIES;
-
 public class NewBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registry.BLOCK_REGISTRY, AdventureMod.MODID);
 
     public static final RegistryObject<Block> ALEMBIC = BLOCKS.register("alembic",
             () -> new AlembicBlock(BlockBehaviour.Properties.of(Material.METAL))
+    );
+
+    public static final RegistryObject<Block> BREWMASTERS_TABLE = BLOCKS.register("brewmasters_table",
+            () -> new BrewmastersTable(BlockBehaviour.Properties.of(Material.WOOD))
     );
 
     public static final RegistryObject<Block> BARLEY_CROP = BLOCKS.register("barley_crop",
