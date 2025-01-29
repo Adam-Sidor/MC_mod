@@ -7,7 +7,7 @@ import net.minecraft.world.item.Items;
 import static com.example.adventuremod.items.NewItems.*;
 
 public class AlembicRecipes {
-    public static ItemStack getResult(ItemStack input1, ItemStack input2, ItemStack input3,ItemStack output) {
+    public static ItemStack getResult(ItemStack input1, ItemStack input2, ItemStack input3,ItemStack output,ItemStack fuel) {
         if(input1.getItem()!=input2.getItem()&&input2.getItem()!=input3.getItem()&&input3.getItem()!=input1.getItem()) {
             if (input1.getItem() == MUG.get() &&  isCorrectExtras(input2,input3,HOP.get())){
                 if((output.getItem()==BEER.get()||output.getItem()==Items.AIR)&&output.getCount()<4) {
@@ -41,9 +41,11 @@ public class AlembicRecipes {
                 if((output.getItem()==SPIRIT.get()||output.getItem()==Items.AIR)&&output.getCount()<16) {
                     return new ItemStack(SPIRIT.get());
                 }
-            }else if(input1.getItem() == BOTTLE.get()&&isCorrectExtras(input2,input3,BARLEY.get())) {
-                if((output.getItem()==WHISKEY.get()||output.getItem()==Items.AIR)&&output.getCount()<16) {
-                    return new ItemStack(WHISKEY.get());
+            }else if(fuel.getItem() == Items.CHARCOAL) {
+                if(input1.getItem() == BOTTLE.get()&&isCorrectExtras(input2,input3,BARLEY.get())) {
+                    if((output.getItem()==WHISKEY.get()||output.getItem()==Items.AIR)&&output.getCount()<16) {
+                        return new ItemStack(WHISKEY.get());
+                    }
                 }
             }
         }

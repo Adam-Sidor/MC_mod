@@ -92,7 +92,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
         ItemStack input3 = itemHandler.getStackInSlot(4);
 
         if ((!input1.isEmpty() || !input2.isEmpty() || !input3.isEmpty()) && waterLevel > 0) {
-            ItemStack result = AlembicRecipes.getResult(input1, input2, input3, itemHandler.getStackInSlot(5));
+            ItemStack result = AlembicRecipes.getResult(input1, input2, input3, itemHandler.getStackInSlot(5),itemHandler.getStackInSlot(1));
             if (!result.isEmpty()) {
                 canFuelStart = true;
                 if (fuelLevel > 0) {
@@ -147,7 +147,7 @@ public class AlembicEntity extends BlockEntity implements net.minecraft.world.Me
             }
         }
         ItemStack fuelSlot = itemHandler.getStackInSlot(1);
-        if (fuelSlot.getItem() == Items.COAL && fuelLevel <= 0 && canFuelStart) {
+        if ((fuelSlot.getItem() == Items.COAL || fuelSlot.getItem() == Items.CHARCOAL) && fuelLevel <= 0 && canFuelStart) {
             fuelLevel = 8;
             fuelSlot.shrink(1);
         }
