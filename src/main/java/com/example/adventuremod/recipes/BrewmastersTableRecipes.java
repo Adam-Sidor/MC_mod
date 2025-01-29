@@ -28,7 +28,6 @@ public class BrewmastersTableRecipes {
         items.add(input3.getItem());
         items.add(input4.getItem());
         if(isDifferentItems()) {
-            System.out.println(items);
             if (isCorrectItems(SPIRIT.get(),Items.WATER_BUCKET)) {
                 if((output.getItem()==VODKA.get()||output.getItem()==Items.AIR)&&output.getCount()<4) {
                     return new ItemStack(VODKA.get());
