@@ -22,8 +22,12 @@ public class NewBlocks {
     );
 
     public static final RegistryObject<Block> BARLEY_CROP = BLOCKS.register("barley_crop",
-            () -> new BarleyCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+            () -> new BarleyCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT))
+    );
 
+    public static final RegistryObject<Block> SHOT_GLASS = BLOCKS.register("shot_glass",
+            () -> new ShotGlassBlock(BlockBehaviour.Properties.of(Material.GLASS))
+    );
 
     public static final RegistryObject<Block> GRAPE_BLOCK = BLOCKS.register("grape_block", () -> new GrapeBlock());
     public static final RegistryObject<Block> UPPER_GRAPE_BLOCK = BLOCKS.register("upper_grape_block", () -> new UpperGrapeBlock());

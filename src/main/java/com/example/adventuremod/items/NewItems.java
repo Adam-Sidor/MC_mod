@@ -1,5 +1,6 @@
 package com.example.adventuremod.items;
 
+import com.example.adventuremod.blocks.NewBlocks;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Blocks;
@@ -29,6 +30,13 @@ public class NewItems {
 
     public static final RegistryObject<Item> BREWMASTERS_TABLE_ITEM = ITEMS.register("brewmasters_table_item",
             () -> new BlockItem(BREWMASTERS_TABLE.get(), new Item.Properties()
+                    .tab(ALCOHOL_TAB)
+                    .stacksTo(4)
+            )
+    );
+
+    public static final RegistryObject<Item> SHOT_GLASS_ITEM = ITEMS.register("shot_glass_item",
+            () -> new BlockItem(SHOT_GLASS.get(), new Item.Properties()
                     .tab(ALCOHOL_TAB)
                     .stacksTo(4)
             )
