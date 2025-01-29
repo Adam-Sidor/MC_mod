@@ -27,6 +27,8 @@ public class ClientSetupHandler {
 
         ItemBlockRenderTypes.setRenderLayer(ALEMBIC.get(), RenderType.cutout());
 
+        ItemBlockRenderTypes.setRenderLayer(SHOT_GLASS.get(), RenderType.cutout());
+
         ItemBlockRenderTypes.setRenderLayer(GRAPE_BLOCK.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(UPPER_GRAPE_BLOCK.get(), RenderType.cutout());
 

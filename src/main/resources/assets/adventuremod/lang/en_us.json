@@ -42,5 +42,6 @@
   "itemGroup.alcohol_tab": "Alcohols",
   "block.adventuremod.alembic" : "Alembic",
   "block.adventuremod.brewmasters_table" : "Brewmaster's Table",
-  "block.adventuremod.barley_crop" : "Barley Crop"
+  "block.adventuremod.barley_crop" : "Barley Crop",
+  "block.adventuremod.shot_glass" : "Shot glass"
 }

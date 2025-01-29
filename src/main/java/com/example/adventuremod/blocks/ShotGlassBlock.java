@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -18,6 +19,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,16 @@ public class ShotGlassBlock extends Block {
     public ShotGlassBlock(BlockBehaviour.Properties properties) {
         super(properties.randomTicks().strength(0.5F, 1.0F));
         this.registerDefaultState(this.stateDefinition.any().setValue(FILL, 0));
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return Shapes.or(
+                Block.box(1, 0, 1, 15, 1, 15),
+                Block.box(0, 1, 0, 16, 2, 1),
+                Block.box(0, 1, 0, 1, 2, 16),
+                Block.box(15, 1, 0, 16, 2, 16),
+                Block.box(0, 1, 15, 16, 2, 16));
     }
 
     @Override
@@ -60,10 +74,9 @@ public class ShotGlassBlock extends Block {
                 return InteractionResult.SUCCESS;
             } else if (holdItem.isEmpty()) {
                 if (fillLevel > 0) {
-                    System.out.println("Pijemy");
                     level.setBlock(pos, state.setValue(FILL, fillLevel - 1), 2);
                     player.getCapability(PlayerAlcoholProvider.PLAYER_ALCOHOL).ifPresent(alcohol -> {
-                        if (!alcohol.addAlcohol(4)) {
+                        if (!alcohol.addAlcohol(1)) {
                             player.kill();
                         }
                     });
