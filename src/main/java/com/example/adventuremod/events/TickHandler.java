@@ -7,6 +7,7 @@ import com.example.adventuremod.network.SyncAlcoholLevelPacket;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
@@ -39,18 +40,39 @@ public class TickHandler {
     }
 
     private static void setAlcoholEffects(ServerPlayer serverPlayer){
+        MobEffectInstance confusion = serverPlayer.getEffect(CONFUSION);
+        if (confusion != null) {
+            System.out.println(confusion.getDuration());
+            if(confusion.getDuration() < 100){
+                applyAlcoholEffect(serverPlayer);
+            }
+        }else {
+            applyAlcoholEffect(serverPlayer);
+        }
+    }
+
+    private static void applyAlcoholEffect(ServerPlayer serverPlayer){
         serverPlayer.getCapability(PlayerAlcoholProvider.PLAYER_ALCOHOL).ifPresent(alcohol -> {
             switch (alcohol.getAlcoholLevel()){
                 case 1,2,3,4,5:
-                    serverPlayer.addEffect(new MobEffectInstance(CONFUSION,2,0,false,true,false));
+                    serverPlayer.addEffect(new MobEffectInstance(CONFUSION,200,1,false,true,false));
                     break;
                 case 6,7,8,9,10:
-                    serverPlayer.addEffect(new MobEffectInstance(CONFUSION,2,1,false,true,false));
-                    serverPlayer.addEffect(new MobEffectInstance(MOVEMENT_SLOWDOWN,2,1,false,true,false));
+                    serverPlayer.addEffect(new MobEffectInstance(CONFUSION,200,3,false,true,false));
+                    serverPlayer.addEffect(new MobEffectInstance(MOVEMENT_SLOWDOWN,200,3,false,true,false));
+                    break;
+                case 11,12,13,14,15:
+                    serverPlayer.addEffect(new MobEffectInstance(CONFUSION,200,5,false,true,false));
+                    serverPlayer.addEffect(new MobEffectInstance(MOVEMENT_SLOWDOWN,200,5,false,true,false));
+                    break;
+                case 16,17:
+                    serverPlayer.addEffect(new MobEffectInstance(CONFUSION,200,10,false,true,false));
+                    serverPlayer.addEffect(new MobEffectInstance(MOVEMENT_SLOWDOWN,200,5,false,true,false));
                     break;
                 case 18,19,20:
-                    serverPlayer.addEffect(new MobEffectInstance(CONFUSION,2,2,false,true,false));
-                    serverPlayer.addEffect(new MobEffectInstance(BLINDNESS,5,10,false,true,false));
+                    serverPlayer.addEffect(new MobEffectInstance(CONFUSION,200,15,false,true,false));
+                    serverPlayer.addEffect(new MobEffectInstance(BLINDNESS,200,15,false,true,false));
+                    serverPlayer.addEffect(new MobEffectInstance(MOVEMENT_SLOWDOWN,200,5,false,true,false));
                     break;
             }
         });
