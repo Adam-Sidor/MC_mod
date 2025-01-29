@@ -4,6 +4,8 @@ import com.example.adventuremod.capabilities.PlayerAlcoholProvider;
 import com.example.adventuremod.items.NewItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -55,6 +57,9 @@ public class ShotGlassBlock extends Block {
         if (!level.isClientSide) {
             ArrayList<Item> alcohols = new ArrayList<>();
             alcohols.add(NewItems.VODKA.get());
+            alcohols.add(NewItems.JAGER.get());
+            alcohols.add(NewItems.GIN.get());
+            alcohols.add(NewItems.ABSINTHE.get());
 
             int fillLevel = state.getValue(FILL);
 
@@ -69,6 +74,9 @@ public class ShotGlassBlock extends Block {
                     level.setBlock(pos, state.setValue(FILL, 4), 2);
                     if (!player.isCreative()) {
                         holdItem.shrink(1);
+                        if(!player.getInventory().add(new ItemStack(NewItems.BOTTLE.get()))) {
+                            player.drop(new ItemStack(NewItems.BOTTLE.get()), false);
+                        }
                     }
                 }
                 return InteractionResult.SUCCESS;
@@ -80,6 +88,8 @@ public class ShotGlassBlock extends Block {
                             player.kill();
                         }
                     });
+                    level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                            SoundEvents.GENERIC_DRINK, SoundSource.PLAYERS, 1.0F, 1.0F);
                 }
                 return InteractionResult.SUCCESS;
             }
