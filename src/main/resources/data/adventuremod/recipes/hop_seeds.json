@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "adventuremod:hop"
+    }
+  ],
+  "result": {
+    "item": "adventuremod:hop_seeds",
+    "count": 1
+  }
+}

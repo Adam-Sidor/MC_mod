@@ -1,12 +1,12 @@
 package com.example.adventuremod.items;
 
-import com.example.adventuremod.blocks.NewBlocks;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 import static com.example.adventuremod.blocks.NewBlocks.*;
 
@@ -14,8 +14,25 @@ public class NewItems {
 
     public static final CreativeModeTab ALCOHOL_TAB = new CreativeModeTab("alcohol_tab") {
         @Override
+        @NotNull
         public ItemStack makeIcon() {
             return new ItemStack(JAGER.get());
+        }
+    };
+
+    public static final CreativeModeTab ALCOHOL_PLANTS_TAB = new CreativeModeTab("alcohol_plants_tab") {
+        @Override
+        @NotNull
+        public ItemStack makeIcon() {
+            return new ItemStack(BARLEY.get());
+        }
+    };
+
+    public static final CreativeModeTab ALCOHOL_CREATING_TAB = new CreativeModeTab("alcohol_creating_tab") {
+        @Override
+        @NotNull
+        public ItemStack makeIcon() {
+            return new ItemStack(ALEMBIC_ITEM.get());
         }
     };
 
@@ -23,48 +40,48 @@ public class NewItems {
 
     public static final RegistryObject<Item> ALEMBIC_ITEM = ITEMS.register("alembic_item",
             () -> new BlockItem(ALEMBIC.get(), new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_CREATING_TAB)
                     .stacksTo(4)
             )
     );
 
     public static final RegistryObject<Item> BREWMASTERS_TABLE_ITEM = ITEMS.register("brewmasters_table_item",
             () -> new BlockItem(BREWMASTERS_TABLE.get(), new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_CREATING_TAB)
                     .stacksTo(4)
             )
     );
 
     public static final RegistryObject<Item> SHOT_GLASS_ITEM = ITEMS.register("shot_glass_item",
             () -> new BlockItem(SHOT_GLASS.get(), new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_CREATING_TAB)
                     .stacksTo(4)
             )
     );
 
     public static final RegistryObject<Item> COPPER_CAN = ITEMS.register("copper_can",
             () -> new Item(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_CREATING_TAB)
                     .stacksTo(4)
             )
     );
 
     public static final RegistryObject<Item> COPPER_PIPE = ITEMS.register("copper_pipe",
             () -> new Item(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_CREATING_TAB)
             )
     );
 
     public static final RegistryObject<Item> COPPER_SPIRAL = ITEMS.register("copper_spiral",
             () -> new Item(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_CREATING_TAB)
                     .stacksTo(4)
             )
     );
 
     public static final RegistryObject<Item> COPPER_RADIATOR = ITEMS.register("copper_radiator",
             () -> new Item(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_CREATING_TAB)
                     .stacksTo(4)
             )
     );
@@ -165,13 +182,13 @@ public class NewItems {
 
     public static final RegistryObject<Item> HOP = ITEMS.register("hop",
             () -> new Item(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_PLANTS_TAB)
             )
     );
 
     public static final RegistryObject<Item> HOP_SEEDS = ITEMS.register("hop_seeds",
             () -> new CustomSeedsItem(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_PLANTS_TAB)
                     , HOP_BLOCK.get()
                     , Blocks.GRASS_BLOCK
             )
@@ -195,14 +212,14 @@ public class NewItems {
 
     public static final RegistryObject<Item> BARLEY = ITEMS.register("barley",
             () -> new Item(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_PLANTS_TAB)
             )
     );
 
     public static final RegistryObject<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds",
             () -> new ItemNameBlockItem(BARLEY_CROP.get(),
                     new Item.Properties()
-                            .tab(ALCOHOL_TAB)
+                            .tab(ALCOHOL_PLANTS_TAB)
             )
     );
 
@@ -224,13 +241,13 @@ public class NewItems {
 
     public static final RegistryObject<Item> GRAPE = ITEMS.register("grape",
             () -> new Item(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_PLANTS_TAB)
             )
     );
 
     public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds",
             () -> new CustomSeedsItem(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_PLANTS_TAB)
                     , GRAPE_BLOCK.get()
                     , Blocks.GRASS_BLOCK
             )
@@ -541,13 +558,13 @@ public class NewItems {
 
     public static final RegistryObject<Item> BARLEY_ROASTED = ITEMS.register("barley_roasted",
             () -> new Item(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_PLANTS_TAB)
             )
     );
 
     public static final RegistryObject<Item> BARLEY_MALT = ITEMS.register("barley_malt",
             () -> new Item(new Item.Properties()
-                    .tab(ALCOHOL_TAB)
+                    .tab(ALCOHOL_PLANTS_TAB)
             )
     );
 }

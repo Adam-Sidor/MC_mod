@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "adventuremod:barley"
+    }
+  ],
+  "result": {
+    "item": "adventuremod:barley_seeds",
+    "count": 1
+  }
+}
